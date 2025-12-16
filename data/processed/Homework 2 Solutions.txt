@@ -1,0 +1,335 @@
+Probability and Statistics: MA6.101
+Homework 2 Solutions
+Topics Covered: Conditional Probability, Mutual Independence and Exclusion,
+Principles of Counting (Permutations and Combinations)
+Q1: A person has n boxes, where n ≥2. We assume that either a box can have one or
+zero items (both cases have equal probability). What is the probability that all of
+the boxes contain an item for the following cases:
+(a) We pick one box at random and find that it contains an item.
+(b) We ask the person, ”Do you have at least one box with a special item?” They
+respond, ”Yes!” (Here, assume that if a box contains an item, it has a special
+item with probability α ≪1, independently of other boxes.
+If the box is
+empty, it does not have a special item.)
+A:
+E1 ⇒Event that the random box we pick has an item
+E2 ⇒Event that atleast one of the boxes has a special item
+Gi ⇒Event that exactly i boxes have an item
+To find: P (Gn | E1) P (Gn | E2)
+(a)
+P (Gn | E1) = P (Gn ∩E1)
+P (E1)
+P (E1) =
+n
+X
+i=0
+P (E1 ∩Gi)
+P (E1 ∩Gi) = P (E1 | Gi) P (Gi)
+P (E1 ∩G0) = P (E1 | G0) P (G0) = 0
+Then,
+P (E1 ∩Gi) = P (E1 | Gi) P (Gi)
+As we pick the box randomly and it happens to have an item:
+P (E1 | Gi) = i
+n
+Probability of having exactly i boxes with an item inside them:
+P (Gi) = 1
+2n ∗nCi
+So,
+P (E1 ∩Gi) = 1
+2n ∗i
+n ∗nCi
+So,
+P (E1) = 1
+2n ∗1
+n ∗
+n
+X
+i=1
+i ∗nCi = 1
+2n ∗1
+n ∗(n ∗2n−1) = 1
+2
+1
+
+(Using binomial expansion for (1 + x)n)
+P (Gn | E1) =
+1
+2n ∗n
+n ∗nCn
+1
+2
+P (Gn | E1) =
+1
+2n−1
+(b) Here, we need to find:
+P (Gn | E2)
+Similar to part (a),
+P (E2 ∩Gi) = P (E2 | Gi) P (Gi)
+To calculate P (E2 | Gi) we know that the probability that atleast
+one box has a special item is the same as the complement of the
+probability that no box has a special item.
+P (E2 | Gi) = 1 −P (Ec
+2 | Gi)
+P (Ec
+2 | Gi) = (1 −α)i
+P (E2 | Gi) = 1 −(1 −α)i
+Probability of having a excatly i boxes with an item inside them:
+P (Gi) = 1
+2n ∗nCi
+P (E2 ∩Gi) =
+
+1 −(1 −α)i
+∗1
+2n ∗nCi
+So,
+P (E2) = 1
+2n ∗
+n
+X
+i=1
+
+1 −(1 −α)i
+∗nCi
+P (E2) = 1
+2n ∗
+" n
+X
+i=1
+nCi −
+n
+X
+i=1
+(1 −α)i ∗nCi
+#
+Using binomial expansion for (1 + x)n we find that:
+n
+X
+i=1
+nCi = 2n −1
+P (E2) = 1
+2n ∗[2n −1 −((2 −α)n −1)] = 1
+2n ∗[2n −(2 −α)n]
+P (Gn | E2) = P (Gn ∩E2)
+P (E2)
+P (Gn | E2) = 1 −(1 −α)n
+2n −(2 −α)n
+2
+
+Q2: A coin is tossed n times, what is the probability of getting an odd number of heads
+if the probability of getting heads is p.
+A: Let P(n) denote the probability of getting an odd number of heads
+when a coin is tossed n times.
+Base Case:
+For n = 1, the probability of getting an odd number of heads is simply
+the probability of getting a head:
+P(1) = p
+Recursive Case:
+For n > 1, the probability Pn can be expressed in terms of P(n −1) as
+follows:
+P(n) = p · (1 −P(n −1) + (1 −p) · P(n −1)
+Simplifying, we get:
+P(n) = p + (1 −2p) · P(n −1)
+Solving the above recursion:
+P(2) = p + (1 −2p) · P(1)
+P(3) = p + (1 −2p) · P(2)
+Substituting,
+P(3) = p + (1 −2p) · (p + (1 −2p) · P(1))
+Simplifying,
+P(3) = p + (1 −2p) · p + (1 −2p)2 · P(1)
+By observing the pattern an putting P(1) = p,
+P(n) = p+p·(1−2p)+p·(1−2p)2 +· · ·+p·(1−2p)n−2 +(1−2p)n−1 ·p
+Solving, using sum of GP,
+P(n) = p · (1 −(1 −2p)n)
+1 −(1 −2p)
+P(n) = 1 −(1 −2p)n
+2
+Q3: Harry Potter’s closet contains 12 numbered brooms, of which 8 are Comet Two
+Sixty’s (numbered 1 - 8) and 4 are Nimbus Two Thousand’s (Numbered 9-12).
+Harry, Ron, George and Fred want to sneak out for a game of Quidditch in the
+middle of the night. They don’t want to turn on the light in case Snape catches
+them. They reach in the closet and pull out a sample of 4 brooms. Give answers
+for both unordered and ordered samples.
+3
+
+(a) How many different samples are possible?
+(b) How many samples have exactly one Comet Two Sixty in them?
+(c) How many samples have at least 3 Comet Two Sixty’s?
+(d) Now, Ginny and Demelza wanna join so they grab 6 brooms, but Demelza
+believes that the both teams should have equal number of each type of broom
+for the game to be balanced. So, for any broom for a team we would need
+another broom of the same type for the other team. How many samples will
+keep Demelza happy?
+A:
+(a)
+12C4 = 495
+12P4 = 11880
+(b)
+8C1.4C3 = 32
+8C1.4C3.4! = 768
+(c)
+8C3.4C1 + 8C4.4C0 = 294
+(8C3.4C1 + 8C4.4C0).4! = 7056
+(d) So, we would need to look at three cases: A = (4Nimbus, 2 Comet),
+B = (2 Nimbus, 4 Comet) , C = (6 Comet), since these are mutually
+exclusive,
+Ans = P(A) + P(B) + P(C)
+A = 4C4.8C2 = 28
+B = 4C2.8C4 = 420
+B = 4C0.8C6 = 28
+Total = A + B + C = 28 + 420 + 28 = 476
+For ordered since there are 6 elements, and each is numbered, multi-
+plying total by 6! accounts for all samples
+Total = 6!(476) = 342720
+Q4: The Celtics and the Lakers are set to play a playoff series of n basketball games,
+where n is odd. The Celtics have a probability p of winning any one game, inde-
+pendent of other games.
+(a) Find the values of p for which n = 5 is better for the Celtics than n = 3.
+(b) Generalize part (a). For any k > 0, find the values for p for which n = 2k + 1
+is better for the Celtics than n = 2k −1.
+4
+
+A: a For n = 5 and n = 3, we compare the probabilities of the Celtics
+winning the series.
+Let P(n) denote the probability of the Celtics winning the series when
+there are n games.
+For n = 3: The Celtics need to win 2 out of 3 games. The probability is:
+P(3) =
+2
+1
+
+p2(1 −p)1 + p3 = 2p2(1 −p) + p3
+For n = 5: The Celtics need to win 3 out of 5 games. The probability is:
+P(5) =
+4
+2
+
+p3(1−p)2 +
+4
+1
+
+p4(1−p)1 +p5 = 6p3(1−p)2 +4p4(1−p)+p5
+To find when n = 5 is better than n = 3, solve:
+P(5) > P(3)
+6p3(1 −p)2 + 4p4(1 −p) + p5 > 2p2(1 −p) + p3
+b
+Generalizing the problem to n = 2k + 1 and n = 2k −1:
+Let PA be the probability of winning a series of 2k + 1 games and PB be
+the probability of winning a series of 2k −1 games. The Celtics need to
+win k + 1 out of 2k + 1 games and k out of 2k −1 games.
+PA =
+2k+1
+X
+i=k+1
+2k
+i
+
+pi(1 −p)2k+1−i
+PB =
+2k−1
+X
+i=k
+2k −1
+i
+
+pi(1 −p)2k−1−i
+To determine when PA > PB, we need:
+PA −PB =
+ 2k
+k + 1
+
+pk+1(1 −p)k −
+2k −1
+k
+
+pk(1 −p)k+1
+Simplify:
+PA −PB =
+(2k)!
+(k + 1)!(k −1)!pk+1(1 −p)k −(2k −1)!
+k!(k −1)!pk(1 −p)k+1
+=
+(2k)!
+(k + 1)k!pk+1(1 −p)k −(2k −1)!
+k!(k −1)!pk(1 −p)k+1
+=
+(2k)!
+k!(k + 1)!pk(1 −p)k(2p −1)
+Thus, n = 2k + 1 is better than n = 2k −1 if and only if p > 1
+2.
+Q5: In a company, there are three teams: Team A, Team B, and Team C. Each team
+has different success probabilities for their projects:
+5
+
+• Team A has a 70% chance of completing a project successfully.
+• Team B has a 60% chance of completing a project successfully.
+• Team C has a 50% chance of completing a project successfully.
+Projects are assigned to these teams with the following probabilities:
+• 40% of projects are assigned to Team A
+• 35% of projects are assigned to Team B
+• 25% of projects are assigned to Team C
+Consider a project is completed successfully.
+(a) What is the probability that the project was assigned to Team A given that
+it was completed successfully?
+(b) If you have two projects, what is the probability that both projects are com-
+pleted successfully?
+(c) Calculate the probability that a project assigned to Team B is not completed
+successfully.
+(d) Suppose the company has 12 projects to assign, and you want to assign exactly
+5 projects to Team A, 4 to Team B, and 3 to Team C. How many different
+ways can you assign these projects?
+(e) Out of these 12 projects, how many ways can you select 6 projects such that
+exactly 3 are from Team A and 3 are from Team B?
+A:
+(a) To find the probability that the project was assigned to Team A given
+that it was completed successfully, use Bayes’ Theorem:
+P(A | Success) = P(Success | A) · P(A)
+P(Success)
+where:
+P(Success) = P(Success | A)·P(A)+P(Success | B)·P(B)+P(Success | C)·P(C)
+Substituting the values:
+P(Success) = 0.70 · 0.40 + 0.60 · 0.35 + 0.50 · 0.25
+P(Success) = 0.28 + 0.21 + 0.125 = 0.615
+P(A | Success) = 0.70 · 0.40
+0.615
+= 0.28
+0.615 ≈0.456
+(b) If the success of each project is independent, the probability that
+both projects are completed successfully is:
+P(Both Success) = P(Success) × P(Success)
+Since the probabilities of success for two randomly chosen projects
+depend on their respective probabilities:
+P(Both Success) = 0.615 × 0.615 ≈0.378
+6
+
+(c) The probability that a project assigned to Team B is not completed
+successfully is:
+P(Not Success | B) = 1 −P(Success | B)
+P(Not Success | B) = 1 −0.60 = 0.40
+(d) To assign 12 projects with 5 to Team A, 4 to Team B, and 3 to Team
+C, use the multinomial coefficient:
+12!
+5!4!3!
+Calculating this:
+12!
+5!4!3! = 479001600
+120 · 24 · 6 = 27720
+(e) To select 6 projects such that exactly 3 are from Team A and 3 are
+from Team B:
+5
+3
+
+×
+4
+3
+
+Calculating this:
+5
+3
+
+= 10
+4
+3
+
+= 4
+Total Ways = 10 × 4 = 40
+7

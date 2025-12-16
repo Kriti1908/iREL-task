@@ -1,0 +1,351 @@
+Mutually exclusive and Independence
+▶Two events A and B are mutually exclusive if occurrence of
+one implies that the other event cannot occur. Are they
+independent?
+▶If A and B are mutually exclusive, then they are not
+independent (and vice versa). This can be seen as follows.
+A and B are Mutually Exclusive
+▶P(A ∩B) = 0
+▶P(A/B) = 0
+▶P(A/Bc) = P(A∩Bc)
+P(Bc)
+=
+P(A)
+P(Bc)
+A and B are Independent
+▶P(A ∩B) = P(A)P(B)
+▶P(A/B) = P(A)
+▶P(A/Bc) = P(A)
+▶If A ⊆B, then two events are neither mutually exclusive nor
+independent.
+50 / 70
+
+Zero probability events and Independence
+Zero probability events are always independent!
+▶Let E be a zero probability event, i.e. P(E) = 0.
+▶Then for any set F, we want to show that P(E ∩F) = 0.
+▶Note that E ∩F ⊆E.
+▶This implies that P(E ∩F) ≤P(E).
+51 / 70
+
+Conditional independence
+▶Recall : P(A/B) = P(AB)
+P(B) .
+▶Also recall : P(A/BC) = P(AB/C)
+P(B/C)
+▶This implies P(AB/C) = P(A/BC)P(B/C).
+Two events A and B are said to be conditionally independent
+of event C (P(C) > 0) if P((AB)/C) = P(A/C).P(B/C)
+▶As a consequence P(A/BC) = P(A/C)
+HW: Verify if events A and B are conditionally independent of
+event C (in the experiment of picking number randomly in
+{1, .., 10})
+52 / 70
+
+Conditional independence – example
+▶There are two coins, one fair and other fake (both heads).
+The experiment is to choose a coin uniformly and toss twice.
+▶Event A: First coin toss results in H. What is its probability?
+P(A) = 3/4.
+▶Event B: Second coin toss results in H. What is its
+probability? P(B) = 3/4.
+▶Event C: Coin 1 is chosen.
+▶What is P(A/C) and P(B/C)? 1/2
+▶What is P((A ∩B)/C)? 1/4 Hence A and B are conditionally
+independent given C.
+▶Are A and B independent? HW
+53 / 70
+
+First principle of counting
+54 / 70
+
+Principle of counting
+▶Given n objects, in how many ways can you arrange them? n!
+▶Given n objects, how many distinct pairs can you form?
+nC2 =
+n
+2
+ =
+n!
+n−2!2!.
+▶In general, given n objects, we can make
+nCk =
+n
+k
+ =
+n!
+n−k!k!
+distinct combination of k objects.
+▶Note that in each combination or group of k objects, the
+ordering within each group is immaterial. What if we also
+want to count this?
+▶
+nPk =
+nCk × k!
+55 / 70
+
+Experiments with Sampling
+▶Sampling: Sampling from a set means choosing an element
+from the set.
+▶Sampling uniformly at random: All items in the set have equal
+probability of being chosen.
+▶Sampling can be with replacement or without replacement.
+▶Sampling can be ordered or unordered.
+▶In ordered sampling, (a, b, c) ̸= (c, b, a).
+▶This leaves us with 4 combinations.
+1. Ordered sampling with replacement
+2. Ordered sampling without replacement
+3. Unordered sampling with replacement
+4. Unordered sampling without replacement
+56 / 70
+
+Ordered sampling with replacement
+▶Suppose you want to sample k out of n objects with
+replacement and where the ordering of the k objects matters.
+▶Because we sample with replacement, repetition is allowed.
+▶How many ways can you choose k objects out of n this way?
+▶a) nk?
+b)
+n
+k
+
+c) kn
+d) nk ?
+▶There are k positions and n choices for every position.
+▶Total nk.
+57 / 70
+
+Ordered sampling without replacement
+▶Suppose you want to sample k out of n objects now without
+replacement and where the ordering of the k objects matters.
+▶Because we sample without replacement, repetition is not
+allowed.
+▶How many ways can you choose k objects out of n this way?
+▶a) nk?
+b)
+n
+k
+
+c) kn
+d) none ?
+▶There are k positions and n −i + 1 choices for every i th
+position.
+▶Total n × (n −1) × . . . (n −k + 1) =
+n!
+(n−k)! =
+nPk.
+58 / 70
+
+Unordered sampling without replacement
+▶Here you want to sample k out of n objects without
+replacement and the ordering of the k objects does not
+matters.
+▶Because we sample without replacement, repetition is not
+allowed.
+▶How many ways can you choose k objects out of n this way?
+▶a) nk?
+b)
+n
+k
+
+c) kn
+d) none ?
+▶Essentially we want to count distinct k sized subsets from n
+objects without caring for ordering.
+▶
+nCk.
+59 / 70
+
+Unordered sampling with replacement
+▶Here you want to sample k out of n objects with replacement
+and the ordering of the k objects does not matters.
+▶Because we sample with replacement, repetition is allowed.
+▶How many ways can you choose k objects out of n this way?
+▶In any such sampling, any object i can appear atmost k times.
+▶Let xi denote the number of times object i is chosen in k
+samples.
+▶Then any sampling satisfies
+n
+X
+i=1
+xi = k
+▶How many solutions to the above equation tells you how
+many ways you can do the above sampling.
+▶
+n+k−1
+k
+ Think(HW).
+60 / 70
+
+Example 1
+▶How many different 7-plate licenses are possible if the first 3
+places are to be occupied by letters and the final 4 by
+numbers?
+▶ANS: 263104.
+▶What if the alphabets and numbers are not to repeat?
+61 / 70
+
+Example 2
+▶How many functions defined on n points are possible if each
+functional value is either 0 or 1?
+▶ANS: 2n
+62 / 70
+
+Example 3
+▶How many different letter arrangements can be formed using
+the letters PEPPER?
+▶If the P’s and E’s are distinguished as P1, P2, P3 and E1, E2, R
+then 6!.
+▶But we don’t want to distinguish the P’s and E’s.
+▶For every indistinguishable arrangement, say PPPREE, there
+are 3! × 2! different distinguished arrangements.
+▶Using principles of counting, the number of indistinguishable
+arrangements are
+6!
+3!2!1!
+63 / 70
+
+Example 4
+▶How many different permutations of n objects can be formed
+when n1 are alike, n2 are alike, ..., nr are alike?
+▶ANS:
+n!
+n1!n2!...nr! where Pr
+i=1 ni = n.
+▶When r = 2, we have
+n!
+n1!n−n1! =
+nCn1 =
+nCn−n1.
+▶Now suppose there are n distinct items and you want to divide
+them in r groups where group i has size ni and where
+Pr
+i=1 ni = n. How many ways can you do this in?
+▶ANS:
+n
+n1
+ n−n1
+n2
+ . . .
+n−n1−n2...−nr−1
+nr
+
+▶This is same as
+n!
+n1!n2!...nr!
+64 / 70
+
+Example 5
+▶There are n red balls and r bins. How many ways can you put
+these balls in bins such that no bin is empty ?
+▶ANS: This is same as finding the number of solutions to
+r
+X
+i=1
+xi = n where xi > 0.
+▶Arrange all n balls in a line.
+▶There are n −1 spaces between these n balls where you want
+to place r −1 partitions (or sticks).
+▶No two partitions can be in the same space else that would
+mean a bin is empty.
+▶Select r −1 out of n −1 (unordered without replacement)
+▶
+n−1
+r−1
+.
+65 / 70
+
+Example 6
+▶There are n red balls and r bins. How many ways can you put
+these balls in bins such that bins can be empty ?
+▶ANS: This is same as finding the number of solutions to
+r
+X
+i=1
+xi = n where 0 ≤xi ≤n.
+▶This is same as finding the number of solutions to
+r
+X
+i=1
+yi = n + r where 0 < yi < n. (substitute yi = xi + 1
+above!)
+▶
+n+r−1
+r−1
+.
+66 / 70
+
+Example 6 – Alternative solution
+▶There are n red balls and r bins. How many ways can you put
+these balls in bins such that bins can be empty ?
+▶ANS: This is same as finding the number of solutions to
+r
+X
+i=1
+xi = n where 0 ≤xi ≤n.
+▶Represent xi by that many vertical lines.
+▶Total n vertical lines and r −1 + signs.
+▶n + r −1 objects where n are alike and r −1 are alike.
+▶
+n+r−1
+r−1
+.
+67 / 70
+
+Example 7
+▶Toss a biased coin n times with p as the probability of head.
+What is the probability that you have k heads ?
+▶ANS:
+n
+k
+pk(1 −p)n−k.
+▶When p = 1 and k = n, we will have the convention that
+00 = 1!. Check the following link
+▶https:
+//en.wikipedia.org/wiki/Zero_to_the_power_of_zero
+▶What is the probability that you will get head for the first
+time at the r th toss where r ≤n?
+▶ANS: (1 −p)r−1p.
+68 / 70
+
+Example 8
+▶Suppose you roll a dice n times, what is probability that half
+of them show 1 and remaining half show 6? (n is even)
+▶ANS:
+n
+n/2
+
+1
+6
+n
+▶What is the probability that n1 of them show 1 and n2 show 6?
+▶
+n!
+n1!n2!(n−n1−n2)!
+
+1
+6
+n1
+1
+6
+n2
+4
+6
+(n−n1−n2)
+69 / 70
+
+Example: Monty Hall
+▶There are 3 doors, 2 goats and 1 car.
+▶Please choose one door! Suppose you choose Door 1.
+▶As a presenter, I open a door which has a goat (say door 2)
+and give you an option to change your choice. Will you ?
+▶Sol: Let Ci denote the event that door i conceals a car and G
+denote the event that a goat is shown at door 2.
+▶P(G) = 1 since the presenter has shown a goat behind door 2.
+▶What is P(C3/G)? Verify if the following is correct.
+▶P(C3/G) = P(C3∩G|C1)P(C1)+P(C3∩G|Cc
+1 )P(Cc
+1 )
+P(G)
+= 2/3 > P(C3)
+70 / 70

@@ -1,0 +1,304 @@
+Probability and Statistics: MA6.101
+Homework 7
+Topics Covered: Moment Generating Functions and Stochastic Simulation
+Q1: Let X1, X2, . . . , Xn be n i.i.d exponential random variables with parameter λ. Let
+Zmin = min(X1, X2, . . . , Xn) and Zmax = max(X1, X2, . . . , Xn).
+Generate Zmin and Zmax.
+Answer: The CDF of Zmin is:
+Gmin(z) = P(Zmin ≤z) = 1 −P(Zmin > z)
+Since Zmin = min(X1, X2, . . . , Xn):
+P(Zmin > z) = P(X1 > z, X2 > z, . . . , Xn > z) =
+n
+Y
+i=1
+P(Xi > z) = (P(X1 > z))n
+For Xi ∼Exp(λ):
+P(Xi > z) = e−λz
+P(Zmin > z) = e−nλz
+Therefore, the CDF of Zmin is:
+Gmin(z) = 1 −e−nλz
+To generate Zmin:
+Gmin(z) = U
+1 −e−nλz = U
+z = −1
+nλ ln(1 −U)
+Thus,
+Zmin = −1
+nλ ln(U)
+The CDF of Zmax is:
+Gmax(z) = P(Zmax ≤z) = P(X1 ≤z, X2 ≤z, . . . , Xn ≤z)
+Gmax(z) = (P(X1 ≤z))n
+For Xi ∼Exp(λ):
+P(Xi ≤z) = 1 −e−λz
+Therefore:
+Gmax(z) = (1 −e−λz)n
+To generate Zmax:
+Gmax(z) = U
+1
+
+(1 −e−λz)n = U
+z = −1
+λ ln(1 −U 1/n)
+Thus, to generate from Zmax:
+Zmax = −1
+λ ln(1 −U 1/n)
+Q2: Let X be a discrete random variable with the following moment-generating function:
+M(t) = 1
+10et + 2
+10e2t + 3
+10e3t + 4
+10e4t
+for all t.
+Determine the p.m.f of X.
+Answer:
+The moment-generating function is defined as:
+M(t) = E[etX] =
+X
+x
+pX(x)etx
+where pX(x) is the probability mass function.
+By comparing the given mgf with the general form, we can identify the probabilities
+associated with the discrete values of X:
+pX(1) = 1
+10,
+pX(2) = 2
+10,
+pX(3) = 3
+10,
+pX(4) = 4
+10.
+The probability mass function (p.m.f.) pX(x) of X can be expressed as:
+pX(x) =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1
+10
+if x = 1
+2
+10
+if x = 2
+3
+10
+if x = 3
+4
+10
+if x = 4
+0
+otherwise
+To verify that this is a valid p.m.f., we check that the probabilities sum to 1:
+pX(1) + pX(2) + pX(3) + pX(4) = 1
+10 + 2
+10 + 3
+10 + 4
+10 = 10
+10 = 1.
+2
+
+Q3: Let X and Y be two independent random variables with respective moment gener-
+ating functions
+mX(t) =
+1
+1 −5t,
+if t < 1
+5,
+mY (t) =
+1
+(1 −5t)2,
+if t < 1
+5.
+Find E(X + Y )2.
+Answer:
+First recall that if we let W = X + Y , and using that X, Y are independent, then
+we see that
+mW(t) = mX+Y (t) = mX(t)mY (t) =
+1
+(1 −5t)3,
+recall that E[W 2] = m′′
+W(0), which we can find from
+m′
+W(t) =
+15
+(1 −5t)4,
+m′′
+W(t) =
+300
+(1 −5t)5,
+thus
+E[W 2] = m′′
+W(0) =
+300
+(1 −0)5 = 300.
+Q4: True or False? If X ∼Exp(λx) and Y ∼Exp(λy), then X + Y ∼Exp(λx + λy).
+Justify your answer.
+Answer:
+We first find the MGF of X + Y and compare it to the MGF of a random variable
+V ∼Exp(λx + λy). The MGF of V is
+mV (t) =
+λx + λy
+λx + λy −t,
+for t < λx + λy.
+By independence of X and Y ,
+mX+Y (t) = mX(t)mY (t) =
+λx
+λx −t ·
+λy
+λy −t.
+but
+λx + λy
+λx + λy −t ̸=
+λx
+λx −t ·
+λy
+λy −t,
+and hence the statement is false.
+Q5: Given an integral I =
+R 2π
+0
+f(x)dx, solve the following:
+(a) Write the Monte Carlo Estimate, assuming X′
+is are sampled uniformly over
+the domain.
+(b) Write the Monte Carlo Estimate, assuming X′
+is are sampled according to some
+PDF g(Xi).
+3
+
+(c) Prove that the Monte Carlo Estimates from the previous questions compute
+the right answer on average.
+Answer:
+(a) We are given samples from U ∼[0, 2π]. Using SLLN,
+I = 2πE[f(U)] ≈2π
+N
+N
+X
+i=0
+f(Ui)
+(b) We are given samples of Y with PDF g(·).
+I =
+Z 2π
+0
+f(y)
+g(y)g(y)dy = E
+f(y)
+g(y)
+
+≈1
+N
+N
+X
+i=0
+f(Yi)
+g(Yi)
+(c) We want to show that the expected value of the estimate of I is equal to
+I. Using linearity of expectation,
+E
+"
+2π
+N
+N
+X
+i=0
+f(Ui)
+#
+= 2π
+N
+N
+X
+i=0
+E[Ui] = 2πE[U] = I
+and
+E
+"
+1
+N
+N
+X
+i=0
+f(Yi)
+g(Yi)
+#
+= 1
+N
+N
+X
+i=0
+E
+f(Yi)
+g(Yi)
+
+= E
+f(Y )
+g(Y )
+
+= I
+Q6: Let X ∼Gamma(α, β). Find the MGF of X and its region of convergence.
+Note: The pdf of Gamma(α, β) is given by fX(x) =
+βα
+Γ(α)xα−1e−βx for x ≥0 and
+Γ(z) =
+R ∞
+0 tz−1e−tdt.
+Answer:
+MX(t) = E[etX]
+=⇒MX(t) =
+βα
+Γ(α)
+Z ∞
+0
+etxe−βxxα−1dx
+=⇒MX(t) =
+βα
+Γ(α)
+Z ∞
+0
+e−x(β−t)xα−1dx
+Let x′ = x(β −t) then dx = dx′
+β−t
+=⇒MX(t) =
+βα
+Γ(α)
+Z ∞
+0
+e−x′
+x′α−1
+(β −t)α−1
+dx′
+β −t
+=⇒MX(t) =
+βα
+Γ(α)(β −t)α
+Z ∞
+0
+e−x′x′α−1dx′
+=⇒MX(t) =
+
+β
+β −t
+α
+Now looking at the initial expression
+MX(t) =
+βα
+Γ(α)
+Z ∞
+0
+etxe−βxxα−1dx
+If we take β = t, then our integral
+R ∞
+0 xα−1dx diverges. If β < t, then our integral
+R ∞
+0 ekxxk′dx diverges again due to k > 0 and exponential dominating polynomials.
+So our region of convergence is t < β
+4

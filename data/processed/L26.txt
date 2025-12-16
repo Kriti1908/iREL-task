@@ -1,0 +1,364 @@
+RECAP
+▶A point estimator ˆΘ = h(X1, . . . Xn)
+▶B(ˆΘ) = E[ˆΘ] −θ∗
+▶MSE(ˆΘ) = E[(ˆΘ −θ∗)2].
+Furthermore,
+MSE(ˆΘ) = Var(ˆΘ) + Bias(ˆΘ)2
+▶Consistent and Strongly consistent estimators.
+▶Esitmators for mean and Variance
+▶MLE Estimators
+ˆΘML
+=
+arg max
+θ
+L(x1, . . . , xn; θ)
+=
+arg max
+θ
+logL(x1, . . . , xn; θ)
+20 / 38
+
+Bayesian Inference with posterior distribution
+▶In Bayesian Inference we aim to extract information about
+unknown quantity θ∗based on observing a collection
+X = (x1, x2, . . . xn) using Bayes rule.
+▶We model uncertainty about θ∗using a random variable Θ.
+▶The nature of Θ changes as we collect more data, reducing
+the uncertainty in θ∗
+▶Bayes rule: {posterior on Θ} ∝{liklihood of X}× {prior on θ}
+▶Θ and X each could be continuous or discrete variables, and
+vice versa case are analogously obtained.
+21 / 38
+
+Bayes rule revisited .... revisited
+fΘ|X(θ|x) = fX|Θ(x|θ)fΘ(θ)
+fX(x)
+(X, Θ continuous)
+pΘ|X(θ|x) = pX|Θ(x|θ)pΘ(θ)
+pX(x)
+(X, Θ discrete)
+pΘ|X(θ|x) = fX|Θ(x|θ)pΘ(θ)
+fX(x)
+(X cont,Θ discrete)
+fΘ|X(θ|x) = pX|Θ(x|θ)fΘ(θ)
+pX(x)
+Θ cont,X discrete)
+22 / 38
+
+Example 1: Beta prior & Posterior, Binomial likelihood
+▶Suppose I toss a biased coin with θ∗as the true probability of
+head which you want to estimate based on data Dn from n
+tosses.
+▶Let X denote the number of heads in Dn.
+▶Suppose we assume a Beta(α, β) prior on θ∗,
+▶Then show that the posterior distribution fΘ|X(θ|k) has Beta
+distribution with parameters α′ = α + k and β′ = n −k + β.
+23 / 38
+
+Beta distribution
+▶This is a continuous probability distribution on support (0, 1)
+with two parameter (α, β).
+▶Θ ∼Beta(α, β) implies
+fΘ(θ) =
+1
+B(α, β)θα−1(1 −θ)β−1,
+0 < θ < 1.
+▶Here B(α, β) = Γ(α)Γ(β)
+Γ(α+β)
+▶Γ(α) =
+R ∞
+0 e−ttα−1dt.
+Note Γ(n) = (n −1)!
+▶https://en.wikipedia.org/wiki/Beta_distribution
+24 / 38
+
+25 / 38
+
+Example 1: Beta prior & Posterior, Binomial likelihood
+▶First note that the mean and variance for Beta(α, β) is given
+by
+α
+α+β and
+αβ
+(α+β)2(α+β+1).
+▶Also verify that when α = β = 1, it corresponds top a uniform
+distribution.
+▶Now note that if we start with a uniform prior (or Beta(1, 1)),
+then the mean of the posterior distribution is given by k+1
+n+2
+and
+(k+1)(n+1)
+(k+n+2)2(k+n+2).
+▶What happens as n →∞? The mean goes to θ∗almost
+surely using SLLN and the variance goes to zero.
+▶The posterior distribution therefore becomes a dirac-delta at
+θ∗.
+26 / 38
+
+Problem Setup: Beta Prior & Binomial Likelihood
+▶We observe n coin tosses with k heads. The goal is to find
+the posterior distribution of Θ, the probability of heads.
+▶Prior belief: Θ ∼Beta(α, β),
+fΘ(θ) =
+1
+B(α, β)θα−1(1 −θ)β−1,
+0 < θ < 1.
+▶Likelihood of observing k heads given Θ = θ:
+fX|Θ(k|θ) =
+ 
+n
+k
+!
+θk(1 −θ)n−k.
+▶Bayes’ Theorem:
+fΘ|X(θ|k) = fX|Θ(k|θ)fΘ(θ)
+fX(k)
+.
+27 / 38
+
+Substituting Likelihood and Prior
+▶Substitute the likelihood and prior into Bayes’ formula:
+fΘ|X(θ|k) =
+n
+k
+θk(1 −θ)n−k ·
+1
+B(α,β)θα−1(1 −θ)β−1
+fX(k)
+.
+▶Combine terms in the numerator:
+fΘ|X(θ|k) =
+n
+k
+
+B(α, β) · θk+α−1(1 −θ)n−k+β−1
+fX(k)
+.
+▶Marginal likelihood (fX(k)) ensures the posterior integrates to
+1:
+fX(k) =
+Z 1
+0
+ 
+n
+k
+!
+·
+1
+B(α, β) · θk+α−1(1 −θ)n−k+β−1dθ.
+28 / 38
+
+Simplifying the Marginal Likelihood
+▶Factor out constants from the integral:
+fX(k) =
+ 
+n
+k
+!
+·
+1
+B(α, β)
+Z 1
+0
+θk+α−1(1 −θ)n−k+β−1dθ.
+▶Recognize the integral as the Beta function:
+Z 1
+0
+θk+α−1(1 −θ)n−k+β−1dθ = B(k + α, n −k + β).
+▶Substitute back:
+fX(k) =
+ 
+n
+k
+!
+· B(k + α, n −k + β)
+B(α, β)
+.
+29 / 38
+
+Deriving the Posterior
+▶Substitute the marginal likelihood fX(k) into the posterior
+formula:
+fΘ|X(θ|k) =
+(n
+k)
+B(α,β) · θk+α−1(1 −θ)n−k+β−1
+n
+k
+ · B(k+α,n−k+β)
+B(α,β)
+.
+▶Cancel
+n
+k
+ and
+1
+B(α,β):
+fΘ|X(θ|k) = θk+α−1(1 −θ)n−k+β−1
+B(k + α, n −k + β) .
+▶Recognize this as the Beta distribution:
+fΘ|X(θ|k) ∼Beta(k + α, n −k + β).
+https://mathlets.org/mathlets/beta-distribution/
+30 / 38
+
+Example 2: Gaussain Pior, Likelihood & Posterior
+▶Suppose we observe realisation x = (x1, . . . , xn) of
+X = (X1, . . . , Xn) where Xi are i.i.d with true mean θ∗and
+true variance σ2. Suppose we know σ2 but not θ∗and also
+know that Xi is Gaussian. How do we infer θ∗?
+▶Lets model θ∗by a Gaussian random variable Θ ∼N(µ0, σ2).
+▶Since Xi are i.i.d, the likelihood are given by
+fX|Θ(x|θ) =
+nQ
+i=1
+fXi|Θ(xi|θ)
+▶Now show that fΘ|X(θ|x) is Gaussian with mean
+Pn
+i=1 xi.+µ0
+n
+and variance
+σ2
+n+1.
+▶What happens as n →∞?
+31 / 38
+
+Likelihood and Prior
+▶Likelihood of X = (X1, . . . , Xn) given Θ = θ:
+fX|Θ(x|θ) =
+nQ
+i=1
+fXi|Θ(xi|θ).
+▶Using the Gaussian form:
+fX|Θ(x|θ) =
+
+1
+√
+2πσ2
+n
+exp
+
+−1
+2σ2
+nP
+i=1
+(xi −θ)2
+
+.
+▶Prior on Θ:
+fΘ(θ) =
+1
+√
+2πσ2 exp
+ 
+−(θ −µ0)2
+2σ2
+!
+.
+▶Bayes’ theorem for the posterior:
+fΘ|X(θ|x) ∝fX|Θ(x|θ)fΘ(θ).
+32 / 38
+
+The Posterior Distribution
+▶After lots of simplification (HW) the posterior simplifies to:
+fΘ|X(θ|x) ∝exp
+ 
+−(n + 1)
+2σ2
+
+θ −
+Pn
+i=1 xi + µ0
+n + 1
+2!
+.
+▶This is a Gaussian distribution:
+Θ|X = x ∼N
+ Pn
+i=1 xi + µ0
+n + 1
+,
+σ2
+n + 1
+!
+.
+33 / 38
+
+Behavior as n →∞
+▶As n →∞:
+▶Posterior mean:
+Pn
+i=1 xi+µ0
+n+1
+→1
+n
+Pn
+i=1 xi, the sample mean.
+▶Posterior variance:
+σ2
+n+1 →0.
+▶Interpretation:
+▶With more data (n →∞), the posterior concentrates around
+the sample mean.
+▶The influence of prior µ0 becomes negligible as n increases.
+34 / 38
+
+Conjugate Priors
+▶Clearly, there are occasions where the prior and posterior are
+of the same family of distributions.
+▶The prior and posterior are called conjugate distributions and
+the prior is called conjugate prior.
+▶This makes it very convenient as now you only need to keep
+track of the parameters of the distribution than the
+distribution itself.
+▶https://en.wikipedia.org/wiki/Conjugate_prior
+35 / 38
+
+Maximum aposteriori probability (MAP)
+The MAP estimate ˆθMAP of θ∗given observation X = x is
+the value of θ that maximizes fΘ|X(θ|x) (resp. pΘ|X(θ|x))
+when X is continuous (resp. discrete) random variable.
+▶From Bayes rule this is same as maximizing fX|Θ(x|θ)fΘ(θ)
+(ignoring the dinominator since it is independent of θ).
+▶How do you optimize this to obtain ˆθMAP?
+▶ˆθMAP ∈
+n
+θ : d
+dθ
+
+fX|Θ(x|θ)fΘ(θ)
+
+= 0
+o
+▶Compare this with MLE
+ˆθML = argmaxθfX|Θ(x|θ)
+36 / 38
+
+MAP for Example 2
+▶Recall Example 2 where we saw that given Gaussian samples
+(x1, . . . , xn) but with unknown mean µ, we model the
+unknwon mean as a random variable Θ with a Gaussian prior.
+▶We then get a Gaussian posterior fΘ|X(θ|x) with mean
+Pn
+i=1 xi.+µ0
+n
+and variance
+σ2
+n+1.
+▶What is ˆθMAP?
+▶Gaussian is a unimodal function and hence ˆθMAP =
+Pn
+i=1 xi.+µ0
+n
+▶Is it same as MLE? HW!
+37 / 38
+
+Conditional Expectation Estimator
+▶Yet another estimator for the unknown θ∗is the conditional
+expectation estimator given by
+θCE = E[Θ|X = x] =
+Z
+θ
+θfΘ|X(θ|x)dθ
+.
+▶Find θCE for all the previous examples.
+38 / 38

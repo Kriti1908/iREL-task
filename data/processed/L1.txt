@@ -1,0 +1,223 @@
+MA 6.101
+Probability and Statistics
+Tejas Bodas
+Assistant Professor, IIIT Hyderabad
+1 / 73
+
+Logistics
+▶Feel free to contact me anytime at tejas.bodas@iiit.ac.in.
+▶Office @ A5304.
+▶TA list: Around 12 TAs, you will meet them during tutorials
+▶Lectures: Wednesday and Saturday 10:00 to 11:25
+▶Tutorial on Friday 8:30 to 10:00.
+▶Phones in pocket, laptops in bag!
+2 / 73
+
+Resources
+▶Wont be following any one particular book.
+▶Lecture slides will have material from variety of sources.
+▶Some popular books
+1. Introduction to probability by Bertsekas and Tsisiklis (Athena
+Scientific)
+2. Intro. to Probability and Statistics for Engineers and Scientists
+by Sheldon Ross (Elsevier)
+3. A first course in probability by Sheldon Ross (Prentice Hall)
+▶Some urls
+1. https://www.probabilitycourse.com/
+2. https://www.statlect.com/
+3. https://www.randomservices.org/
+3 / 73
+
+Evaluation scheme
+▶Quiz 1 : 15%
+▶Midsem exam: 30%.
+▶Quiz 2: 10%
+▶Endsem 35 %.
+▶Surprise Quiz 10 %
+4 / 73
+
+Course Outline
+▶Module 1 (3 Lectures)
+Motivation & Probability basics
+▶Module 2 (11 Lectures)
+All about random variables!
+▶Module 3 (5 Lectures)
+Conditioning, Modes of convergence, Stochastic Simulation
+▶Module 4 (3 Lectures)
+Random vectors, Random Processes
+▶Module 5 (4 lectures)
+Probability inequalities and Statistics
+5 / 73
+
+Prerequisites
+▶Set theory
+▶Limits & Continuity
+▶Differentiation & Integration
+▶Matrices and Determinants
+▶These are clickable links to relevant NCERT resources !
+6 / 73
+
+Where is probability & statistics useful?
+▶Machine Learning
+▶Reinforcement Learning
+▶Computer Systems (performance analysis)
+▶Finance (option pricing)
+▶Operations Research (Inventory management, dynamic
+pricing)
+7 / 73
+
+Random experiments and Sample space
+▶Random experiment : Experiment involving randomness
+▶Coin toss
+▶Roll a dice
+▶Pick a number at random from [0, 1].
+▶Sample space Ω: set of all possible outcomes of the random
+experiment. It could be a finite or infinite set.
+▶Ωc = {H, T}
+▶Ωd = {1, 2, . . . , 6}
+▶Ωu = [0, 1]
+▶Ω2c = {H, T} × {H, T} = {(H, H), (H, T), (T, H), (T, T)}
+8 / 73
+
+Outcomes and Events
+▶Element ω ∈Ωis called a sample point or possible outcome.
+▶A subset A ⊆Ωis called an event.
+▶Examples of events
+▶Events in the coin experiment: C1 = {T}.
+▶Events in the dice experiment: D1 = {6}, D2 = {1, 3, 5}
+▶Events in U[0, 1] experiment: U1 = {0.5}, U2 = [.25, .75].
+▶In this course, we are interested in probability of events.
+▶Probability of event A is denoted by P(A).
+▶It may not be possible to measure/assign probability for every
+subset A (more later).
+▶Any guesses for P(C1), P(D1), P(D2), P(U1) and P(U2) ?
+9 / 73
+
+Probability theory
+{Random experiment, Sample space, Events} are the key in-
+gredients in probability theory.
+In probability theory, we are interested in measuring the
+probability of subsets of Ω(events).
+Probability measure P is a set function, i.e. it acts on sets
+and measures the probability of such sets.
+10 / 73
+
+Set theory 101
+Visualizing operations on events using Venn diagram!
+▶Complements: Ac
+▶∅denotes empty set.∅⊆A for all A.
+▶Union: A ∪B
+▶Intersections: A ∩B
+▶Difference: A\B
+▶Symmetric difference:
+▶Mutually exclusive or disjoint events A and B:
+▶Identity laws,Complement laws,Associative, Commutative &
+Distributive laws, De’Morgans law.
+11 / 73
+
+Set theory 101–Cardinality & Countability
+▶Cardinality of A is denoted by |A|.
+▶Inclusion-exclusion principle |A ∪B| = |A| + |B| −|A ∩B|.
+▶Inclusion-exclusion principle for n sets ?
+▶Countable sets: Set A is said to be countable if it is either
+finite or has 1-1 correspondence with natural numbers N.
+▶Uncountable sets: These are sets which are not countable.
+12 / 73
+
+Set theory 101 – Monotone sequence of sets
+▶Increasing sequence A1 ⊆A2 ⊆A3 . . .
+▶Decreasing sequence A1 ⊇A2 ⊇A3 . . .
+▶Examples from U[0, 1]:
+▶In = [0, 1 −1
+n]
+▶Dn = [0, 1
+n]
+13 / 73
+
+Set theory 101 – Cartesian product of sets
+▶Cartesian product of sets A and B is denoted by A × B.
+▶A × B is itself a set whose members are sets of the form (a, b)
+where a ∈A and b ∈B.
+▶Suppose A = {1, 3, 5} and B = {2, 4, 6} what is A × B?
+▶What is [0, 1] × [0, 1]? unit square!
+14 / 73
+
+Set theory 101 – Powersets
+Powerset of A is denoted by P(A) is a set whose members
+are all possible subsets of A. (P and P are different!)
+▶What is P(Ωc) ?
+▶What is P(Ωd) ?
+▶What is P(Ωu) ?
+▶What is the cardinality of P(Ωc), P(Ωd), P(Ωu) ?
+▶For discrete sets Ω, often the power set is denoted by 2Ω.
+15 / 73
+
+functions and set functions
+▶What are functions? Functions are rules or maps that map
+elements from a domain D to elements in the range R.
+▶f : D →R.
+▶Example: f : R →R defined by f (x) = x.
+▶Read more on injection, surjection, bijection!
+▶What are set functions? these are functions that act on sets
+and hence domain D is a collection of sets.
+▶Example: length of closed segments on the real line.
+▶l : D →R+ where D = {[a, b] : a ≤b, a, b ∈R} and where
+l([c, d]) = d −c.
+16 / 73
+
+Back to P
+▶Why this detour to set theory?
+▶Recall that Probability measure P acts on sets and measures
+the probability of such sets.
+▶In set theory 101 we looked at operations on sets A and B
+that gave new sets like A ∪B, A\B, A × B, P(A).
+▶So given P(A) and P(B), can we deduce P(A ∪B) or P(A/B)?
+▶We want to understand how the probability measure P acts on
+sets such as A ∪B, A\B, A × B.
+17 / 73
+
+P axioms
+Probability measure P is a set function.
+Axiom 1: P(∅) = 0, P(Ω) = 1
+Axiom 2: For a set A ⊆Ωwe have 0 ≤P(A) ≤1.
+Axiom 3: For a disjoint collection of events A1, A2, . . . (where
+Ai ⊆Ω)
+P
+ ∞
+[
+i=1
+Ai
+!
+=
+∞
+X
+i=1
+P(Ai)
+▶What is in general the domain of P? Ω?
+▶P(Ω)? Recall P(Ω) = {A : A ⊆Ω}. Seems like a great
+choice!
+18 / 73
+
+Towards a formal definition of P
+Probability measure P can be defined as a set-function
+P : P(Ω) →[0, 1] that satisfies the following 3 axioms.
+Axiom 1: P(∅) = 0, P(Ω) = 1
+Axiom 2: For a set A ⊆Ωwe have 0 ≤P(A) ≤1.
+Axiom 3: For a disjoint collection of events A1, A2, . . . (where
+Ai ⊆Ω)
+P
+ ∞
+[
+i=1
+Ai
+!
+=
+∞
+X
+i=1
+P(Ai)
+▶Is there a perceivable problem with this definition?
+▶The following counter-example will construct a set-function P
+for which you cannot assign valid probabilities to every subsets
+in Ωwithout violating these axioms.
+19 / 73

@@ -1,0 +1,254 @@
+Recap
+pX|A(x) := pX (x)
+P(A) if x ∈A.
+E[X/A] = P
+x xpX|A(x).
+pX(x) = Pn
+i=1 P(Ai)pX|Ai (x)
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+pX(x) = P
+y pX|Y (x|y)pY (y)
+23 / 42
+
+Conditional expectation E[X|Y = y]
+It is easy to guess that
+E[X|Y = y] := P
+x xpX|Y (x|y)
+E[Y |X = x] := P
+y ypY |X(y|x)
+Can you write E[X] in terms of E[X|Y = y]?
+E[X] = P
+y pY (y)E[X|Y = y]
+Proof: P
+y pY (y)E[X|Y = y]
+=
+P
+y pY (y) P
+x xpX|Y (x|y)
+=
+P
+x
+P
+y xpX,Y (x, y)
+=
+P
+x xpX(x)
+=
+E[X]
+24 / 42
+
+Summary
+pX|A(x) := pX (x)
+P(A) if x ∈A.
+E[X/A] = P
+x xpX|A(x).
+pX(x) = Pn
+i=1 P(Ai)pX|Ai (x)
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+pX(x) = P
+y pX|Y (x|y)pY (y)
+E[X|Y = y] := P
+x xpX|Y (x|y)
+E[X] = P
+y pY (y)E[X|Y = y]
+25 / 42
+
+How about all this for continuous X & Y ?
+pX|A(x) := pX (x)
+P(A) if x ∈A.
+E[X/A] = P
+x xpX|A(x).
+pX(x) = Pn
+i=1 P(Ai)pX|Ai (x)
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+pX(x) = P
+y pX|Y (x|y)pY (y)
+E[X|Y = y] := P
+x xpX|Y (x|y)
+E[X] = P
+y pY (y)E[X|Y = y]
+26 / 42
+
+How about all this for continuous X & Y ?
+fX|A(x) = fX (x)
+P(A) if x ∈A.
+E[X/A] = P
+x xpX|A(x).
+pX(x) = Pn
+i=1 P(Ai)pX|Ai (x)
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+pX(x) = P
+y pX|Y (x|y)pY (y)
+E[X|Y = y] := P
+x xpX|Y (x|y)
+E[X] = P
+y pY (y)E[X|Y = y]
+27 / 42
+
+How about all this for continuous X & Y ?
+fX|A(x) = fX (x)
+P(A) if x ∈A.
+E[X/A] = R ∞
+−∞xfX|A(x)dx
+pX(x) = Pn
+i=1 P(Ai)pX|Ai (x)
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+pX(x) = P
+y pX|Y (x|y)pY (y)
+E[X|Y = y] := P
+x xpX|Y (x|y)
+E[X] = P
+y pY (y)E[X|Y = y]
+28 / 42
+
+How about all this for continuous X & Y ?
+fX|A(x) = fX (x)
+P(A) if x ∈A.
+E[X/A] = R ∞
+−∞xfX|A(x)dx
+fX(x) = Pn
+i=1 P(Ai)fX|Ai (x)
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+pX(x) = P
+y pX|Y (x|y)pY (y)
+E[X|Y = y] := P
+x xpX|Y (x|y)
+E[X] = P
+y pY (y)E[X|Y = y]
+29 / 42
+
+How about all this for continuous X & Y ?
+fX|A(x) = fX (x)
+P(A) if x ∈A.
+E[X/A] = R ∞
+−∞xfX|A(x)dx
+fX(x) = Pn
+i=1 P(Ai)fX|Ai (x)
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+fX,Y (x, y) = fX|Y (x|y)fY (y)
+pX(x) = P
+y pX|Y (x|y)pY (y)
+E[X|Y = y] := P
+x xpX|Y (x|y)
+E[X] = P
+y pY (y)E[X|Y = y]
+30 / 42
+
+How about all this for continuous X & Y ?
+fX|A(x) = fX (x)
+P(A) if x ∈A.
+E[X/A] = R ∞
+−∞xfX|A(x)dx
+fX(x) = Pn
+i=1 P(Ai)fX|Ai (x)
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+fX,Y (x, y) = fX|Y (x|y)fY (y)
+fX(x) = R
+yfX|Y (x|y)fY (y)dy
+E[X|Y = y] = R
+x xfX|Y (x|y)dx
+E[X] = R
+y E[X|Y = y]fY (y)dy
+31 / 42
+
+Conditional expectation E[X|Y ]
+Recall that
+E[X|Y = y] := P
+x xpX|Y (x|y)
+▶E[X|Y = y] is a constant given y.
+▶g(y) := E[X|Y = y] is a function of y.
+▶Now consider the random variable E[X|Y ].
+▶When Y takes the value y, (this happens with probability
+pY (y)) E[X|Y ] takes the value E[X|Y = y].
+▶E[X|Y ] is a function of Y , say g(Y ).
+▶What is the expectation of E[X|Y ]?
+32 / 42
+
+Conditional expectation E[X|Y ]
+▶g(Y ) = E[X|Y ].
+▶What is E[g(Y )] = E[E[X|Y ]]?
+▶E[g(Y )] = P
+y g(y)pY (y) = P
+y E[X|Y = y]pY (y).
+▶This implies E[g(Y )] = E[E[X|Y ]] = E[X]. This is the law of
+iterated expectation.
+E[E[X|Y ]] = E[X]
+33 / 42
+
+Conditional expectation E[X|Y ] – Example
+▶Consider Y =
+(
+λ1 with prob p
+λ2 with prob 1 −p .
+▶Now consider an exponential random variable X with a
+random parameter Y .
+▶What is E[X]?
+▶E[X] = E[E[X|Y ]] = P
+y E[X|Y = y]pY (y)
+▶We have X ∼Exp(λ1) with probability p when Y = λ1.
+▶Similarly X ∼Exp(λ2) with probability 1 −p when Y = λ2.
+▶E[X|Y = λi] = 1
+λi
+▶E[X] = p
+λ1 + 1−p
+λ2 .
+34 / 42
+
+Conditional expectation E[X|Y ] – Example 2
+▶Consider Y = X1 + X2 + . . . XN where N is a positive integer
+valued r.v. with PMF pN(·) and X ′
+i s are independent and
+identically distributed (i.i.d) with mean E[X].
+▶What is E[Y ]?
+Use E[Y ] = E[E[Y |N]].
+▶What is E[Y |N = n]?
+▶E[Y |N = n] = E[X1 + X2 + . . . Xn] = nE[X].
+▶This implies E[Y |N] = NE[X].
+▶Now E[Y ] = E[E[Y |N]] = E[NE[X]] = E[X]E[N].
+▶What is Var(Y )?
+(section 4.5)
+35 / 42
+
+Sums of independent random variable
+▶Consider Z = X + Y . What is the pdf of Z when X and Y ?
+▶What is pZ(z) or fZ(z)?
+▶pZ(z) = P
+{(x,y):x+y=z} pX,Y (x, y)
+▶fZ(z) =
+R
+{(x,y):x+y=z} fX,Y (x, y)dxdy.
+▶Integral of a surface over line.
+▶https://en.wikipedia.org/wiki/Line_integral
+▶Since X and Y are independent pX,Y (x, y) = pX(x)pY (y)
+and fX,Y (x, y) = fX(x)fY (y). This gives us
+Convolution formula
+pZ(z) = P
+x pX(x)pY (z −x)
+fZ(z) =
+R ∞
+−∞fX(x)fY (z −x)dx
+HW: What if X and Y are not independent?
+36 / 42
+
+Examples
+▶EX1: Suppose X and Y are independent and U[0, 1]. Find
+the pdf and CDF of Z = X + Y .
+▶https://en.m.wikipedia.org/wiki/File:
+Convolution_of_box_signal_with_itself2.gif
+▶Ex2: Suppose X and Y are outcomes of independent roll of
+dice. Find the pmf of Z = X + Y .
+37 / 42

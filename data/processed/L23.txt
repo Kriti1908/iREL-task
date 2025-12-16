@@ -1,0 +1,141 @@
+RECAP
+▶Markov property:
+P(Xn = j|X1 = x1, .., Xn−1 = xn−1) = P(Xn = j|Xn−1 = xn−1)
+▶You need ¯µ = (µ1, . . . , µM) and t.p.m P do write down the
+finite dimensional distributions
+P(X0 = x0, X1 = x1, . . . Xk = xk) = pxk−1,xk × . . . ×
+px0,x1µx0
+▶Chapman Kolmogorov Equations tell us that the n-step t.p.m
+is just Pn.
+37 / 42
+
+Classification of states
+▶Consider a Markov process with state space S
+▶We say that j is accessible from i if pn
+ij > 0 for some n.
+▶This is denoted by i →j.
+▶if i →j and j →i then we say that i and j communicate.
+This is denoted by i ↔j.
+A chain is said to be irreducible if i ↔j for all i, j ∈S.
+▶Are the examples of Markovian coin and dice we have
+considered till now irreducible? check!
+38 / 42
+
+Recurrent and Transient states
+▶We say that a state i is recurrent if
+Fii = P( ever returning to i having started in i ) = 1.
+▶Fii is not easy to calculate. (Not part of this course)
+▶If a state is not recurrent, it is transient.
+▶For a transient state i, Fii < 1.
+▶If i ↔j and i is recurrent, then j is recurrent.
+39 / 42
+
+Limiting probabilities
+▶P =
+" 0
+0
+1
+0
+0.6
+0.4
+0.6
+0.4
+0
+#
+P5 =
+".06
+.3
+.64
+.18
+.38
+.44
+.38
+.44
+.18
+#
+P30 =
+".23
+.385
+.385
+.23
+.385
+.385
+.23
+.385
+.385
+#
+▶P =
+
+1 −a
+a
+b
+1 −b
+
+limn→∞Pn =
+
+b
+a+b
+a
+a+b
+b
+a+b
+a
+a+b
+
+▶What is the interpretation of limn→∞p(n)
+ij
+= [limn→∞Pn]ij?
+▶αj = limn→∞p(n)
+ij
+denotes the probability of being in state j
+after a large time from starting in state i.
+▶For an M state DTMC, α = (α1, . . . , αM) denotes the
+limiting distribution.
+▶How do we obtain the limiting distribution α? Does it always
+exist?
+40 / 42
+
+Stationary distribution
+The stationary distribution of a Markov chain is defined as
+a solution to the equation π = πP.
+▶πP is essentially the p.m.f of X1 having picked X0 according
+to π.
+▶π = πP says that, if the initial distribution is π, then the
+distribution of X1 is also π.
+▶Continuing this argument, the p.m.f of Xn for any n is π and
+there is no dependence on the starting state.
+▶MCMC algorithms use this idea (at stationarity successive
+states of the Markov chain have p.m.f π) to sample from
+target distribution π.
+41 / 42
+
+Limiting vs Stationary distribution
+▶Obtain stationary distribution for the Markov Chain with
+transition probability P =
+
+
+0
+0
+1
+0
+0.6
+0.4
+0.6
+0.4
+0
+
+
+▶The limiting distribution α need not exist for some Markov
+chains, but the stationary distribution π exists.
+For example
+for P =
+"
+0
+1
+1
+0
+#
+.
+▶The limiting distribution if it exists, is same as the stationary
+distribution, i.e. αi = πi for all i.
+42 / 42

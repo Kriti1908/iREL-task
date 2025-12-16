@@ -2,8 +2,8 @@ import fitz
 import os
 from tqdm import tqdm
 
-RAW_DIR = "data/raw"
-OUT_DIR = "data/processed"
+RAW_DIR = "../data/raw"
+OUT_DIR = "../data/processed"
 
 os.makedirs(OUT_DIR, exist_ok=True)
 

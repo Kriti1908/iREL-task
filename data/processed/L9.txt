@@ -1,0 +1,150 @@
+MA 6.101
+Probability and Statistics
+Tejas Bodas
+Assistant Professor, IIIT Hyderabad
+1 / 28
+
+Function of continuous random variables
+▶Consider Y = aX + b where X is a continuous random
+variable.
+▶What is FY (y) and fY (y)?
+▶FY (y) = P(Y ≤y) = P(aX + b ≤y).
+▶FY (y) = FX( y−b
+a ) if a > 0
+▶fY (y) = dFY (y)
+dy
+= 1
+afX( y−b
+a ) when a > 0
+▶FY (y) = 1 −FX( y−b
+a ) if a < 0
+▶fY (y) = dFY (y)
+dy
+= −1
+a fX( y−b
+a ) when a < 0
+▶In general, fY (y) =
+1
+|a|fX( y−b
+a )
+2 / 28
+
+Function of continuous random variables
+Consider Y = aX + b where X is a continuous random vari-
+able. Then fY (y) =
+1
+|a|fX( y−b
+a ).
+▶What if Y = g(X) where g(·) is continuous, differentiable and
+monotone. Any guess?
+▶Since g(.) is monotone and continuous it is invertible. Let
+h(.) denote the inverse function.
+Then h(Y ) = X.
+Consider Y = g(X) where g is monotone, continuous, dif-
+ferentiable. Then fY (y) = | dh
+dy (y)|fX(h(y)) where h is the
+inverse function of g.
+3 / 28
+
+Function of continuous random variables
+Consider Y = g(X) where g is monotone, continuous, dif-
+ferentiable. Then fY (y) = fX(h(y))| dh
+dy (y)| where h is the
+inverse function of g.
+Proof:
+▶Since g(.) is monotone and continuous it is invertible. Let
+h(.) denote the inverse function.
+Then X = h(Y ).
+▶FY (y) = P(g(X) ≤y).
+▶Is P(g(X) ≤y) = P(X ≤h(y)) always?
+▶Are the two events {g(X) ≤y} and X ≤h(y) same?
+▶If they are same, then the two probabilities are equal.
+4 / 28
+
+Function of continuous random variables
+▶Are the two events {g(X) ≤y} and {X ≤h(y)} same ?
+▶Same when g is increasing and compliments when g is
+decreasing.
+5 / 28
+
+Function of continuous random variables
+▶Are the two events {g(X) ≤y} and {X ≤h(y)} same ?
+▶Same when g is increasing and compliments when g is
+decreasing.
+▶CASE 1: g(x) is non-decreasing
+▶FY (y) = P(g(X) ≤y) = P(X ≤h(y)) = FX(h(y)).
+▶fY (y) = d
+dy (FX(h(y))) = fX(h(y)) dh
+dy (y) where dh
+dy (y) ≥0 as h
+is also non-decreasing.
+▶Rewritten therefore as fY (y) = fX(h(y))| dh
+dy (y)|
+6 / 28
+
+Function of continuous random variables
+▶Are the two events {g(X) ≤y} and {X ≤h(y)} same ?
+▶Same when g is increasing and compliments when g is
+decreasing.
+▶CASE 2: g(x) is non-increasing
+▶FY (y) = P(g(X) ≤y) = P(X > h(y)) = 1 −FX(h(y)).
+▶fY (y) = −d
+dy (FX(h(y))) = −fX(h(y)) dh
+dy (y) where dh
+dy (y) ≤0
+as h is non-increasing as well.
+▶Rewritten therefore as fY (y) = fX(h(y))| dh
+dy (y)|.
+HW: What about the case when g is not monotone ?
+Q: Suppose Y = X 2, then what is fY (y) in terms of fX(x)?
+7 / 28
+
+Mixed random variables
+7 / 28
+
+Mixed Random variables
+▶Random variables that are neither continuous nor discrete are
+called as mixed random variables.
+▶Their CDF is partly continuous and partly piece-wise
+continuous.
+▶Example: X is a U[0, 1] random variable and Y = X if
+X ≤0.5 and Y = 0.5 if X > 0.5.
+▶What is the CDF and PDF of Y ?
+8 / 28
+
+Mixed Random variables
+▶Let FY (y) = C(y) + D(y) where C(y) corresponds to the
+continuous part and D(y) for the discontinuous part.
+▶
+E[Y ] =
+Z ∞
+−∞
+xc(x)dx + P
+yk
+ykP(Y = yk)
+where {y1, y2, . . .} are jump points of D(y) where
+P(Y = yk) > 0.
+▶See section 4.3.1 from probabilitycourse.com for more
+examples
+▶Amount of workload (pending) on a server!
+A server on a
+cluster may be idle with a finite probability. If busy, the
+pending work is a continuous random variable.
+9 / 28
+
+Multiple random variables
+9 / 28
+
+A running example
+▶Consider an experiment of tossing a coin and a dice together.
+▶Ω= {0, 1} × {1, 2, 3, 4, 5, 6}.
+F = 2Ω.
+P(ω) =
+1
+12.
+▶Let X and Y denote the random variables depicting outcome
+of a coin and dice respectively.
+▶For ω = (1, 5) we have X(ω) = 1 and Y (ω) = 5.
+▶We are now interested in the joint PMF pXY (x, y) and joint
+CDF FXY (x, y) of X and Y together.
+10 / 28

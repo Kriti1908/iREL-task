@@ -1,0 +1,186 @@
+Consistency of the PMF
+▶PMF: pX(x) = P({ω ∈Ω: X(ω) = x}) for x ∈Ω′.
+▶How do you check if pX is legitimate PMF?
+▶P
+x∈Ω′ pX(x) = 1. Can you prove this?
+P
+x∈Ω′ pX(x)
+=
+P
+x∈Ω′ P({ω ∈Ω: X(ω) = x})
+=
+P(∪x∈Ω′{ω ∈Ω: X(ω) = x})
+=
+P(Ω)
+15 / 27
+
+Linearity of Expectation
+▶Recall that E[X] = P
+x∈Ω′ xpX(x).
+▶Functions of random variables are random variables.
+▶Furtermore, E[g(X)] := P
+x∈Ω′ g(x)pX(x)
+▶For Y = aX + b, what is E[Y ]?
+E[Y ]
+=
+P
+x∈Ω′(ax + b)pX(x)
+=
+a P
+x∈Ω′ xpX(x) + b
+=
+aE[X] + b.
+▶What is the PMF of Y ?
+16 / 27
+
+PMF of Y where Y = aX + b.
+▶Suppose the range of X is Ω′ = {x1, x2, . . . , xn}. Then what is
+the range Ω′′ of Y ?
+▶Ω′′ = {y1, . . . , yn} where yi = axi + b for i ∈{1, 2, . . . , n}.
+▶It is easy to see that, pY (yi) = pX(xi) for i ∈{1, 2, . . . , n}.
+E[Y ]
+=
+P
+y∈Ω′′ ypY (y)
+=
+P
+x∈Ω′(ax + b)py(ax + b)
+=
+P
+x∈Ω′(ax + b)px(x)
+=
+aE[X] + b.
+▶What if Y = g(X) where the function g(.) is many to one?
+What is the PMF of Y then ?
+17 / 27
+
+Function of random variables
+▶Consider Y = |X| where X is the outcome of an experiment
+where an integer is chosen uniformly from −4 to 4.
+▶pX(x) = 1
+9 for x ∈{−4, −3, . . . , 3, 4}.
+▶What is the range Ω′ for Y ?
+Ω′ = {0, . . . , 4}.
+▶What is pY (2)?
+▶pY (2) = P
+{x:|x|=2} pX(x) = pX(−2) + px(2) = 2
+9.
+18 / 27
+
+Function of random variables
+▶pY (2) = P
+{x:|x|=2} pX(x) = pX(−2) + px(2) = 2
+9.
+Suppose Y = g(X) and X is discrete with pmf pX(·). Then
+pY (y) = P
+{x:g(x)=y} pX(x). (Proof is HW)
+19 / 27
+
+E[g(X)]
+Theorem: Suppose Y = g(X) and X is discrete with pmf
+pX(·). Then, E[Y ] = P
+x g(x)pX(x)
+Proof
+E[Y ]
+=
+P
+y ypY (y)
+=
+P
+y
+P
+{x:g(x)=y}
+g(x)pX(x)
+=
+P
+x g(x)pX(x).
+https://en.wikipedia.org/wiki/Law_of_the_unconscious_
+statistician
+20 / 27
+
+Towards Variance ..
+▶Recall E[X] = P
+x∈Ω′ xpX(x).
+▶Furthermore, E[X n] = P
+x∈Ω′ xnpX(x).
+▶In general, E[g(X)] := P
+x∈Ω′ g(x)pX(x)
+▶Now consider g(X) = (X −E[X])2.
+g(X) quantifies the
+square of the deviation of X from the mean.
+▶Note g(X) cannot track if the deviation is positive or negative!
+▶E[g(X)] would then tell us the mean of the square of the
+deviation.
+▶In fact,
+p
+E(g(X)) quantifies the deviation.
+21 / 27
+
+Variance
+▶E[g(X)] = E[(X −E[X])2] is called as the variance of random
+variable X.
+▶Var(X) := E[(X −E[X])2]
+▶HW: Prove that E[(X −E[X])2] = E[X 2] −E[X]2
+▶σX =
+p
+Var(X) is called as the standard deviation of X.
+▶For a fair coin toss, instead of Ω′ = {1, −1}, what if we use
+{+100, −100} ? The latter has more variance!
+▶HW: What is Var(Y ) where Y = aX + b?
+22 / 27
+
+Examples of discrete random variables
+22 / 27
+
+Indicator random variable
+▶Indicator random variable 1A(ω) =
+(
+1,
+If ω ∈A ⊆Ω
+0,
+otherwise.
+▶Its PMF is p1A(x) =
+(
+P(A),
+when x = 1
+1 −P(A),
+when x = 0.
+▶This is a discrete random variable even though Ωcould be
+continuous.
+▶For example, Event A could be that the number picked
+uniformly on the real line is positive.
+▶What is its CDF and mean denoted by E[1A]?
+▶What about its mean variance and moments?
+23 / 27
+
+Bernoulli random variable
+▶Bernoulli random variable X =
+(
+1,
+with probability p
+0,
+otherwise.
+▶This is same as an indicator variable but here we do not
+specify A.
+▶As a matter of convenience, we will start ignoring Ωfrom now
+on.
+▶These random variables are used in Binary classification in
+ML. X = 1 if image has a cat.
+▶Basic models of Multi-arm bandit problem assume Bernoulli
+Bandits.
+▶E[X] = p, E[X n] = p.
+24 / 27
+
+Binomial B(n, p) random variable.
+▶Consider a biased coin (head with probability p) and toss it n
+times.
+▶Denote head by 1 and tail by 0.
+▶Let random variable N denote the number of heads in n
+tosses.
+▶PMF of N?.
+pN(k) =
+n
+k
+pk(1 −p)n−k.
+▶HW: What is E[N], E[N2], Var(X)?
+25 / 27

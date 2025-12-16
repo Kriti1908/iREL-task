@@ -1,0 +1,160 @@
+MA 6.101
+Probability and Statistics
+Tejas Bodas
+Assistant Professor, IIIT Hyderabad
+1 / 29
+
+Geometric random variable
+▶Consider a biased coin (head with probability p) and suppose
+you keep tossing it till head appears the first time.
+▶Let random variable N denote the number of tosses needed
+for head to appear first time.
+▶What is the PMF of N? pN(k) = (1 −p)k−1p.
+▶HW: What is E[N], E[N2], Var(N)?
+▶What is ¯FN(k) := 1 −FN(k) = P(N > k)?
+▶What is P(N > k + m | N > k) ? (= P(N > m))
+(memoryless property)
+2 / 29
+
+Poisson random variable
+▶A Poisson random variable X comes with a parameter λ and
+has Ω′ = Z≥0
+▶PMF: pX(k) = e−λ λk
+k!
+▶Intuitively its a limiting case of the Binomial distribution with
+n increasing and p decreasing such that np converges to λ.
+▶Mean of binomial is np so p should decrease while n increases.
+▶Read the Wiki page on Poisson limit theorem.
+▶We will see more of this when we see Poisson Prcoesses.
+3 / 29
+
+Induced measure PX and CDF
+▶The cumulative distribution function (CDF) FX(x) can be
+expressed using induced measure PX.
+▶Suppose the domain of PX is B(R).
+B(R) is made up of sets
+of the form (−∞, a] for a ∈R.
+▶PX((−∞, x]) = P{w ∈Ω: X(w) ≤x} := FX(x).
+▶This is a general definition of CDF (applicable for both
+continuous or discrete).
+▶If FX(·) is continuous (resp. piecewise continuous), then X is
+continuous (resp. discrete) random variable.
+4 / 29
+
+For a r.v. X, its CDF satisfies the following
+▶FX(∞) = 1 and FX(−∞) = 0 when P(−∞< X < ∞) = 1.
+▶FX : R →[0, 1] is non-decreasing and right continuous.
+▶At point of discontinuity x we have
+1. right hand limit FX(x+) := limϵ↓0 FX(x + ϵ)
+2. left hand limit FX(x−) := limϵ↑0 FX(x −ϵ)
+3. FX(x−) ̸= FX(x+).
+4. FX(x) could be set to either of the two. Which one?
+▶Right continuity mandates that at point of discontinuity, we
+have FX(x) = FX(x+).
+▶By default, FX(x) = FX(x+) = FX(x−) if FX(x) is
+continuous at x.
+5 / 29
+
+Right-continuity
+FX : R →[0, 1] is non-decreasing and right continuous.
+Proof
+▶Consider a < b where a and b are arbitrary.
+We want to
+show that FX(a) ≤FX(b).
+▶Define A := {ω ∈Ω: X(ω) ≤a}, B := {ω ∈Ω: X(ω) ≤b}.
+▶Easy to see that A ⊆B and hence P(A) ≤P(B).
+▶FX(a) = PX((−∞, a]) = P(A) ≤P(B) = FX(b).
+▶This proves the non-decreasing part.
+6 / 29
+
+Right-continuity
+FX : R →[0, 1] is non-decreasing and right continuous.
+Proof for right-continuity
+▶We want to prove that FX(x) = FX(x+).
+▶Consider a sequence of numbers {xn} decreasing to x. In this
+case, we have FX(x+) = limxn↓x FX(xn).
+▶Define An := {ω : X(ω) ≤xn} and A := {ω : X(ω) ≤x}.
+▶Is An ↑A or An ↓A ? Clearly, An ↓A.
+▶From continuity of probability, limn→∞P(An) = P(A).
+▶This implies limxn↓x FX(xn) = FX(x).
+▶You cannot prove the other way by considering xn ↑x
+because ∪n(−∞, xn] = (−∞, x) and PX(−∞, x) ̸= FX(x).
+7 / 29
+
+Continuous random variables
+7 / 29
+
+Continuous random variables
+▶A random variable defined on R is discrete, if FX(·) is
+piecewise constant.
+▶A random variable defined on R is continuous, if FX(·) is a
+continuous function.
+▶Examples of Continuous random variables
+1. Pick a number uniformly from [a, b].
+2. Time interval between successive customers entering DMart.
+3. Travel time from office to home.
+4. Level of water in a dam or pending workload on a server.
+8 / 29
+
+Continuous random variables
+▶Associated with a continuous random variable is a probability
+density function (pdf) fX(x) for all x ∈R.
+Its unit is
+probability per unit length and is defined as
+fX(x)
+:=
+lim
+∆→0+
+P(x < X ≤x + ∆)
+∆
+=
+lim
+∆→0+
+FX(x + ∆) −FX(x)
+∆
+=
+dFX(x)
+dx
+.
+▶Alternatively, a random variable X is continuous if there exists
+a non-negative real valued probability density function (PDF)
+fX(·) such that FX(x) =
+R x
+u=−∞fX(u)du.
+dFX(x)
+dx
+= fX(x) or PX(x < X ≤x + h) ≃fX(x)h.
+9 / 29
+
+Properties of pdf
+▶PX(R) =
+R ∞
+u=−∞fX(u)du = 1.
+▶PX(a ≤X ≤b) =
+R b
+a fX(u)du.
+(Area under the curve)
+▶In general, PX(B) =
+R
+u∈B fX(u)du.
+▶PX(a ≤X ≤b) = PX(a < X < b) = PX(a ≤X < b) = PX(a < X ≤b)
+▶PX(X = a) = 0. (no mass at any point)
+10 / 29
+
+Mean, Variance, Moments
+▶E[X] =
+R ∞
+−∞ufX(u)du
+▶E[X n] =
+R ∞
+−∞unfX(u)du
+▶E[g(X)] =
+R ∞
+−∞g(u)fX(u)du
+▶Var[X] = E[g(X)] where g(x) = (x −E[X])2.
+▶For Y = aX + b, E[Y ] = aE[X] + b.
+▶For Y = aX + b, FY (y) = FX( y−b
+a ) when a ≥0.
+▶For Y = aX + b and a < 0, FY (y) = 1 −FX( y−b
+a ).
+11 / 29

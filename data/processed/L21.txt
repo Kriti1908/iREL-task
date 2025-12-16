@@ -1,0 +1,144 @@
+Marginalization and Conditioning (without proof)
+▶Let X ∼N(µ, Σ) and partition X as [X1, X2]T where X1 is
+m × 1 and X2 is (n −m) × 1.
+▶We similarly have µ = [µ1, µ1]T and Σ =
+"
+Σ11
+Σ12
+Σ21
+Σ22
+#
+where
+Σ11 is m × m matrix and so on ..
+Marginalization property:
+The m−dimensional marginal
+distribution of X1 is N(µ1, Σ11) and X2 is N(µ2, Σ22)
+Conditioning property:
+The m−dimensional conditional
+distribution of X1 given X2 = x2 is
+N(µ1 + Σ12Σ−1
+22 (x2 −µ2), Σ11 −Σ12Σ−1
+22 Σ21).
+Note the decrease in variance which does not depend on x2.
+21 / 41
+
+Towards Bivariate Gaussians
+▶Suppose X1 ∼N(µ1, σ2
+1) and X2 ∼N(µ2, σ2
+2). Also suppose
+X1 and X2 are independent.
+▶For x = [x2, x2]T, we have
+fX(x)
+=
+fX1(x1)fX2(x2)
+=
+1
+2πσ1σ2
+e
+−
+
+(x1−µ1)2
+2σ2
+1
++ (x2−µ2)2
+2σ2
+2
+
+=
+1
+(2π)
+p
+det(Σ)e{−1
+2 (x−µ)T Σ−1(x−µ)}
+where Σ =
+"
+σ2
+1
+0
+0
+σ2
+2
+#
+and hence X is bivariate Gaussian.
+▶In general, a vector composed of independent Gaussians is a
+Gaussian vector. The converse is not true: a vector of
+dependent Gaussian components need not be Gaussian vector
+(EX 5.35 in probabilitycourse.com).
+22 / 41
+
+Bivariate Gaussians
+▶In general, X1 and X2 need not be independent in which case
+we have a general bivariate Gaussian
+X = [X1, X2]T ∼N(µ, Σ) where µ = [µ1, µ2]T and
+Σ =
+"
+Σ11
+Σ12
+Σ21
+Σ22
+#
+▶Show that Bivariate Gaussian is closed under
+marginalization,i.e., X1 ∼N(µ1, Σ11) and X2 ∼N(µ2, Σ22).
+▶Show that Bivariate Gaussian is closed under conditioning.
+(For proof see Theorem 5.4, probabilitycourse.com).
+▶This means that Given X2 = x2, one can show that
+fX1|X2(x1|x2) is Gaussian.
+▶These two properties make multivariate Gaussians as efficient
+modelling tools and the handy in Gaussian processes and
+Bayesian optimization.
+23 / 41
+
+Some Bivariate gaussian pdfs
+24 / 41
+
+Some Bivariate gaussian pdfs
+25 / 41
+
+Markov Chains
+25 / 41
+
+Introduction to Stochastic processes
+▶Stochastic process {X(t), t ∈T} is a collection of random
+variables defined such that for every t ∈T we have
+X(t) : Ω→S.
+▶These random variables could be dependent and need not
+have identical distribution.
+▶T is the parameter space (often resembles time) and S is the
+state space.
+▶When T is countable, we have a discrete time process.
+▶If T is a subset of real line, we have a continuous time
+process.
+▶State space could be integers or real numbers
+26 / 41
+
+Examples of Stochastic Processes
+▶Sequence {Xi} of i.i.d random variables.
+▶General random walk: If X1, X2, . . . is a sequence i.i.d of
+random variables, then Sn = Pn
+i=1 Xi is a random walk.
+▶1D Random walks can have positive, negative or no drift
+depending on the sign of E[X].
+▶A trajectory of 2D random walk
+https://upload.wikimedia.org/wikipedia/commons/f/f3/Random_walk_
+2500 animated.svg
+27 / 41
+
+Examples of Stochastic Processes
+▶Weiner process: {X(t), t ≥0} is a Weiner process if
+1. for every t > 0, X(t) ∼N(0, t).
+2. Often called as Brownian Motion as it was used by Robert
+Brown to describe motion of particle suspended in liquid.
+3. It is a scaling limit of a random walk (zoomed out BM).
+4. Trajectories are continuous but not differntiable (Financial
+modeling)
+5. Limit of Functional CLT (CLT for Stochastic processes)
+28 / 41
+
+Examples of Stochastic Processes
+▶Gaussian Process: A continuous time stochastic process
+{Xt, t ∈T} is a gausssian process if and only if for any finite
+set of indices t1, . . . tk, [Xt1, . . . , Xtk] is a multivariate
+Gaussian vector.
+▶{Xn, n ≥0} is a martingale if E[Xn+1|X1, . . . , Xn)] = Xn.
+(Applications in Finance, Optimal Stopping, pricing)
+29 / 41

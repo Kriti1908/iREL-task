@@ -1,0 +1,191 @@
+RECAP
+▶A point estimator ˆΘ is a function of the random samples
+ˆΘ = h(X1, . . . Xn)
+▶The Bias B(ˆΘ) of an estimator ˆΘ is defined as
+B(ˆΘ) = E[ˆΘ] −θ∗
+▶The mean squared error of an estimator ˆΘ is defined as
+MSE(ˆΘ) = E[(ˆΘ −θ∗)2]
+.
+▶MSE(ˆΘ) = Var(ˆΘ) + Bias(ˆΘ)2
+▶We say that ˆΘn is a consistent estimator of θ, if
+lim
+n→∞P(|ˆΘn −θ∗| ≥ϵ) = 0,
+for all ϵ > 0
+10 / 29
+
+Markov’s Inequality: Statement
+Markov’s Inequality: Let X be a non-negative random variable,
+and let a > 0. Then:
+P(X ≥a) ≤E[X]
+a
+.
+Key Points:
+▶Applies to non-negative random variables.
+▶Provides an upper bound on the probability of large deviations.
+▶Useful in analyzing tail probabilities.
+11 / 29
+
+Proof of Markov’s Inequality
+Proof:
+Let X be a positive continuous random variable. We start by
+writing the expectation E[X] as:
+E[X] =
+Z ∞
+−∞
+xfX(x) dx =
+Z ∞
+0
+xfX(x) dx
+(since X ≥0).
+For any a > 0, we can split the integral as follows:
+E[X] =
+Z a
+0
+xfX(x) dx +
+Z ∞
+a
+xfX(x) dx.
+Thus,
+E[X] ≥
+Z ∞
+a
+xfX(x) dx.
+12 / 29
+
+Proof of Markov’s Inequality (cont’d)
+Since x ≥a for x ∈[a, ∞), we have
+Z ∞
+a
+xfX(x) dx ≥
+Z ∞
+a
+afX(x) dx = a
+Z ∞
+a
+fX(x) dx.
+Now, we recognize that
+R ∞
+a fX(x) dx = P(X ≥a), so:
+E[X] ≥a · P(X ≥a).
+Dividing both sides by a (for a > 0), we conclude:
+P(X ≥a) ≤E[X]
+a
+.
+13 / 29
+
+Consistency of estimators
+Theorem
+Let ˆΘ1, ˆΘ2, . . . , be a sequence of point estimators of θ∗. If
+lim
+n→∞MSE(ˆΘn) = 0
+then ˆΘn is a consistent estimator of θ∗
+P(|ˆΘn −θ∗| ≥ϵ)
+=
+P(|ˆΘn −θ∗|2 ≥ϵ2)
+≤
+E[ˆΘn −θ∗]2
+ϵ2
+Markov Inequality
+=
+MSE(ˆΘn)
+ϵ2
+→
+0 as n →∞.
+14 / 29
+
+Point Estimators for Mean and Variance
+▶We know by now that the sample mean (ˆµn) is an unbiased
+estimator for the mean and its MSE is σ2
+n .
+It is also
+consistent.
+▶What about sample variance ? How can it be defined ?
+▶Since σ2 = E[(X −µ)2], we can define sample variance
+estimator as ˆσ2 = 1
+n
+Pn
+i=1(Xi −µ)2.
+▶Problem with this estimator is that it needs the true mean
+which will not be available!
+▶What if we replace true mean by sample mean in the above
+formula?
+15 / 29
+
+Point Estimators for Mean and Variance
+▶Let S2 = 1
+n
+nP
+i=1
+(Xi −ˆµn)2.
+▶HW Exercise: Is S2 an unbiased estimator ? If no, find B(¯S2).
+▶You will see that E[S2] = (n−1)σ2
+n
+and therefore B(S2) = −σ2
+n .
+▶Can you think of an unbiased estimator of the variance ?
+▶How about ¯S2 = nS2
+n−1 =
+1
+n−1
+nP
+i=1
+(Xi −ˆµn)2?
+The sample variance defined by ¯S2 =
+1
+n−1
+nP
+i=1
+(Xi −ˆµn)2
+is an unbiased estimator of the variance.
+▶Is
+√¯S2 and unbiased estimator for the standard deviation σ.
+16 / 29
+
+Maximum likelihood estimation
+▶We have seen point estimators for mean and variance. What
+if we want to estimate other parameter in general like shape,
+scale, rate?
+▶Let X1, . . . , Xn be i.i.d samples from a distribution with a
+parameter θ∗. Let D = {X1 = x1, . . . , Xn = xn}.
+▶If Xi’s are discrete, then the likelihood function is defined
+L(x1, x2, . . . , xn; θ) = pX1,X2,...,Xn(x1, x2, . . . , xn; θ)
+▶L(x1, . . . , xn; θ) = fX1,...,Xn(x1, . . . , xn; θ) (X ′
+i s continuous)
+▶When samples are i.i.d, this is just the product of the
+densities/pmf’s with parameter θ
+▶In such cases, it is easier to work with the log likelihood
+function given by ln L(x1, x2, . . . , xn; θ)
+▶Find the likelihood when D are samples from exp(θ),
+N(θ, 1), Binom(θ, p), Binom(n, θ) etc.
+17 / 29
+
+Maximum likelihood estimation
+▶L(x1, . . . , xn; θ) = fX1,...,Xn(x1, . . . , xn; θ)
+▶You want to find the best θ that represents the data!
+Given D = {x1, . . . , xn}, the estimate ˆΘML is given by
+ˆΘML
+=
+arg max
+θ
+L(x1, . . . , xn; θ)
+=
+arg max
+θ
+logL(x1, . . . , xn; θ)
+▶We can generalize this to setting where more than one
+parameters say (θ∗
+1, . . . , θ∗
+k) are unknown.
+▶Note that differentiating w.r.t θ and equating to zero may not
+help if the parameter we are estimating is known to be an
+integer.
+18 / 29
+
+Properties of MLEs (without proof)
+Let X1, . . . , Xn be a i.i.d sample from a distribution with pa-
+rameter θ∗. Then, under some mild regularity conditions,
+1. ˆΘML is asymptotically consistent, i.e.,
+limn→∞P(|ˆΘML −θ∗| > ϵ) = 0
+2. ˆΘML is asymptotically unbiased, i.e.,
+limn→∞E[ˆΘML] = θ∗
+19 / 29

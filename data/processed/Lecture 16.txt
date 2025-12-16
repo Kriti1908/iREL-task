@@ -1,0 +1,186 @@
+Our aim: Obtain samples from a continuous random
+variable
+▶Suppose you have access to samples from a uniform random
+variable U over support [0, 1].(We will not study how to generate
+such samples.)
+▶Consider a continuous random variable X with support set X and
+let FX(x) denotes its cdf.
+▶Support set of X could be arbitrary.
+▶Our aim: Create i.i.d. samples of r.v. X using i.i.d. samples of U.
+▶We shall again see the inverse transform method to do this.
+14 / 24
+
+Sampling from continuous random variables
+Lemma
+Let U be uniform random variable over [0, 1].
+Consider
+continuous r.v. X with cdf FX(.). Consider a random variable ˆX
+defined as follows
+ˆX := F −1
+X (U)
+Then the cdf of ˆX is FX(.).
+Proof:
+▶Consider the cdf of ˆX, i.e., F ˆX(x) := P[ˆX ≤x]. Then
+FˆX(x) = P[F −1
+X (U) ≤x]
+= P[U ≤FX(x)]
+= FX(x)
+15 / 24
+
+Sampling from continuous random variables
+Lemma
+Let U be uniform random variable over [0, 1]. Consider continuous
+r.v. X with cdf FX(.). Consider a random variable ˆX defined as
+follows
+ˆX := F −1
+X (U)
+Then the cdf of ˆX is FX(.).
+▶Using this lemma, how to generate samples of a continuous
+random variable X using samples U?
+▶Answer: Draw u ∼U and obtain F −1
+X (u). This is a sample
+from ˆX which has same distribution as X.
+▶https://en.wikipedia.org/wiki/Inverse_transform_
+sampling
+▶Do you observe anything “special” about this lemma?
+16 / 24
+
+Application in data analysis
+▶Lemma: ˆX = F −1
+X (U) has distribution FX(.).
+▶What will be cdf of a random variable Y = FX(ˆX)? Uniform!
+▶A consequence of this lemma is that FX(X) is a uniform
+distribution.
+▶This property is known as “probability integral transform or
+universality of uniform”.
+▶This property is used to test whether a set of observations can
+be modelled as arising from a specified distribution G(.) or
+not.
+17 / 24
+
+Evaluating Integrals via Monte Carlo approach
+▶Suppose you want to compute θ =
+R 1
+0 g(x)dx using only
+samples from U[0, 1]. How will you do it ?
+▶θ = E[g(U)].
+▶Use iid samples of U and invoke strong law of large numbers
+(SLLN).
+Suppose Xi are iid, and Sn = Pn
+i=1 Xi.
+Then Sn
+n
+→
+E[X].
+▶as n →∞we have
+nP
+i=1
+g(Ui)
+n
+→E[g(U)] = θ
+.
+▶HW: How will you compute
+R b
+a g(x)dx or
+R ∞
+0 g(x)dx ?
+18 / 24
+
+Importance Sampling
+▶Suppose you want to compute E[h(X)] where X has pdf f (·).
+▶Assume you do not have samples from X but know f (·).
+▶Now suppose you have access to samples from random
+variable Y with pdf g(·).
+▶How will you use i.i.d samples of Y to compute E[h(X)] ?
+E[h(X)]
+=
+Z
+h(x)f (x)dx
+=
+Z h(y)f (y)
+g(y)
+g(y)dy
+=
+EY
+h(Y )f (Y )
+g(Y )
+
+▶Now use LLN and samples of Y to estimate E[h(X)].
+19 / 24
+
+Accept Reject method
+▶Suppose you want to generate samples from X with pmf p(·)
+using samples from Y with pmf q(·).
+▶Suppose that p(y)
+q(y) ≤c for all y.
+▶The accept reject method is as follows:
+▶Step 1: Generate a sample y ∼q(·).
+▶Step 2: Generate u ∼U(0, 1).
+▶Step 3: If u ≤p(y)
+cq(y), accept y as a sample from X.
+▶Step 4: If not, reject y and go back to Step 1.
+20 / 24
+
+Accept Reject method
+▶Why does the method work ?
+▶What is P(y/accept) ?
+is it p(y) ?
+21 / 24
+
+Proof of Accept-Reject Method
+▶To prove that the method produces samples from p(·), we will
+compute the probability of accepting a sample y from q(·).
+▶The probability of accepting y is given by:
+P(accept | y) = P
+
+u ≤p(y)
+cq(y)
+
+= p(y)
+cq(y)
+since u ∼U(0, 1).
+▶Thus, the joint probability of sampling y ∼q(·) and accepting
+it is:
+P(sample y and accept) = q(y) · p(y)
+cq(y) = p(y)
+c
+22 / 24
+
+Proof (cont’d)
+▶The marginal probability of accepting any sample (i.e.,
+normalizing constant) is:
+P(accept) = P
+y P(sample y and accept) = P
+y
+p(y)
+c
+= 1
+c
+▶The conditional probability of accepting a particular sample y
+given that the sample was accepted is:
+P(y | accept) = P(sample y and accept)
+P(accept)
+=
+p(y)
+c
+1
+c
+= p(y)
+▶Therefore, the accepted samples are distributed according to
+p(·), proving that the method works.
+23 / 24
+
+Stochastic Simulation
+▶This was a brief introduction to this area of stochastic
+simulation.
+▶Refer the book Simulation by Sheldon Ross!
+▶Some popular techniques in simulation are:
+▶
+▶The inverse transform method
+▶Accept-Reject method (rejection sampling)
+▶Importance sampling
+▶Markov Chain Monte Carlo (MCMC) methods
+▶Hasting-Metropolis algorithm
+▶Gibbs sampling
+▶Slice sampling
+24 / 24

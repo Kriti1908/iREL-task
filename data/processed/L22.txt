@@ -1,0 +1,167 @@
+Discrete time Markov Chains (DTMC)
+▶A stochastic process {Xn, n ∈Z+} is a discrete time Markov
+chain if for any n we have
+P(Xn = j|X1 = x1, .., Xn−1 = xn−1) = P(Xn = j|Xn−1 = xn−1)
+▶This is called as the Markov property.
+▶P(next state|past states, present state) =
+P(next state| present state)
+▶Why Chain?
+You can view the successive random variables
+as a chain of states being visited in a sequence and where the
+next state visited depends only on the current state.
+▶We will throughout assume that the state space S is
+countable.
+30 / 41
+
+Running example: Coin with memory!
+▶In a Markovian coin with memory, the outcome of the next
+toss depends on the current toss.
+▶Xn = 1 for heads and Xn = −1 otherwise. S = {+1, −1}.
+▶Sticky coin : P(Xn+1 = 1|Xn = 1) = 0.9 and
+P(Xn+1 = −1|Xn = −1) = 0.8 for all n.
+▶Flippy Coin: P(Xn+1 = 1|Xn = 1) = 0.1 while
+P(Xn+1 = −1|Xn = −1) = 0.3 for all n.
+▶This can be represented by a transition diagram (see board)
+▶The one step transition probability matrix P for the two cases
+is Ps =
+"
+0.9
+.1
+0.2
+0.8
+#
+and Pf =
+"
+0.1
+0.9
+0.7
+0.3
+#
+▶The row corresponds to present state and the column
+corresponds to next state.
+31 / 41
+
+Running example: Dice with memory!
+▶In a markovian dice with memory, the outcome of the next roll
+depends on the current roll.
+▶Xn = i for i ∈S where S = {1, . . . , 6}.
+▶Example one-step transition probability matrix
+P =
+
+
+0.9
+.1
+0
+0
+0
+0
+0
+.9
+.1
+0
+0
+0
+0
+0
+0.9
+0.1
+0
+0
+0
+0
+0
+0.9
+0.1
+0
+0
+0
+0
+0
+0.9
+0.1
+0.1
+0
+0
+0
+0
+0.9
+
+
+▶State transition diagram on board
+▶Consider Sn = Pn
+i=1 Xi and ˆµn = Sn
+n .
+What is limn→∞ˆµn?
+▶Cannot invoke SLLN as {Xi} are not i.i.d.
+▶We will see later SLLN for Markov chains!
+32 / 41
+
+Finite dimensional distributions
+▶Consider a Markov dice with transition probability P.
+▶What is P(X0 = 4, X1 = 5, X2 = 6)?
+▶= P(X2 = 6|X1 = 5, X0 = 4)P(X1 = 5|X0 = 4)P(X0 = 4)
+▶= p65p54P(X0 = 4).
+▶What is P(X0 = 4)?
+▶This probability of starting in a particular state is called initial
+distribution of the markov chain.
+33 / 41
+
+Finite dimensional distributions
+▶Consider a DTMC {Xn, n ≥0} with transition matrix P.
+▶We assume M states and X0 denotes the initial state.
+▶You can start in any starting state or may pick your starting
+state randomly.
+▶Let ¯µ = (µ1, . . . , µM) denote the initial distribution, i.e.,
+P(X0 = x0) = µx0.
+▶How does one obtain the finite dimensional distribution
+P(X0 = x0, X1 = x1, , X2 = x2) ?
+▶P(X0 = x0, X1 = x1, , X2 = x2) = px1,x2px0,x1µx0.
+▶In general,
+P(X0 = x0, X1 = x1, . . . Xk = xk) = pxk−1,xk × . . . × px0,x1µx0
+34 / 41
+
+Chapman Kolmogorov Equations for DTMC
+▶Consider a Markov coin and its transition probability matrix
+P =
+"
+p1,1
+p1,−1
+p−1,1
+p−1,−1
+#
+.
+▶Given X0 = 1, what is P(X2 = 1)?
+P(X2 = 1|X0 = 1)
+=
+P(X2 = 1|X1 = 1, X0 = 1)P(X1 = 1|X0 = 1)
++
+P(X2 = 1|X1 = −1, X0 = 1)P(X1 = −1|X0 = 1)
+=
+p2
+1,1 + p−1,1p1,−1
+▶Here the first inequality follow from the fact that
+P(C|A) = P(C|BA)P(B|A) + P(C|BcA)P(Bc|A) HW: Verify
+▶Similarly, P(X2 = −1|X0 = 1), P(X2 = 1|X0 = −1), P(X2 =
+−1|X0 = −1) can be obtained and these are elements of a
+two-step transition matrix P(2).
+35 / 41
+
+Chapman Kolmogorov Equations for DTMC
+▶The two step transition probability matrix P(2) is given by
+P(2) =
+"
+p2
+1,1 + p1,−1p−1,1
+p1,1p1,−1 + p1,−1p−1,−1
+p−1,1p1,1 + p−1,−1p−1,1
+p−1,1p1,−1 + p2
+−1,−1
+#
+.
+▶This implies that P(2) = P × P = P2.
+▶In general, P(n) = Pn.
+▶Chapman-Kolmogorov equations are a further generalization
+of this.
+P(n+l) = P(n)P(l)
+▶We wont see the proof of this.
+36 / 41

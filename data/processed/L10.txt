@@ -1,0 +1,176 @@
+Marginals
+▶What is pXY (1, i)? (=
+1
+12).
+▶P
+i pXY (1, i) = P{ω ∈Ω: X(ω) = 1} = 1
+2 = pX(x).
+▶Similarly, pXY (1, i) + pXY (0, i) = 1
+6 = pY (i).
+The marginal PMF’s pX and pY can be obtained from the
+joint PMF as follows:
+pX(x) = P
+y pXY (x, y) and pY (y) = P
+x pXY (x, y).
+This is true in general, and requires a proof.
+12 / 27
+
+Marginals
+The marginal PMF’s pX and pY can be obtained from the
+joint PMF as follows:
+pX(x) = P
+y pXY (x, y) and pY (y) = P
+x pXY (x, y).
+Proof:
+pX(x)
+=
+P{ω ∈Ω: X(ω) = x}
+=
+P{
+[
+y
+{ω ∈Ω: X(ω) = x, Y (ω) = y}}
+=
+P
+y P{{ω ∈Ω: X(ω) = x, Y (ω) = y}}
+13 / 27
+
+Independence
+▶Back with the running example of coin and dice.
+▶Write down pXY (x, y) and FXY (x, y).
+▶Notice that pXY (1, i) = pX(1)pY (i) and
+FXY (1, i) = FX(1)FY (i).
+▶In general, if pXY (x, y) = pX(x)pY (y) and
+FXY (x, y) = FX(x)FY (y) we say X and Y are independent.
+Two random variables, X and Y are independent if the fol-
+lowing is true:
+pXY (x, y) = pX(x)pY (y) and FXY (x, y) = FX(x)FY (y)
+14 / 27
+
+Independence
+Two random variables, X and Y are independent if the fol-
+lowing is true:
+pXY (x, y) = pX(x)pY (y) and FXY (x, y) = FX(x)FY (y)
+▶How does this relate to P(A ∩B) = P(A)P(B)?
+▶A = {ω ∈Ω: X(ω) ≤x} and B = {ω ∈Ω: Y (ω) ≤y}.
+▶FXY (x, y) := P{ω ∈Ω: X(w) ≤x and Y (ω) ≤y} = P(A ∩B).
+15 / 27
+
+E[XY ]
+▶E[X] = P
+x xpX(x) and E[Y ] = P
+y ypY (y)
+▶E[X] = P
+x
+P
+y xpXY (x, y) and E[Y ] = P
+x
+P
+y ypXY (x, y)
+▶How do we define E[XY ]?
+▶You want to search over all values X × Y can take
+({1, 2, .., 6}) and weight it by the corresponding probabilities.
+▶E[XY ] = P
+x
+P
+y xypXY (x, y) = 1.75 = E[X]E[Y ].
+If X and Y are independent, E[XY ] = E[X]E[Y ].
+16 / 27
+
+Example where X and Y are Dependent
+▶Now consider rolling a dice.
+▶X =
+
+1 if outcome is odd
+0 otherwise .
+and Y =
+
+1 if outcome is even
+0 otherwise .
+▶What is pX(x), pY (y), pXY (x, y) and FXY (x, y)?
+▶What is E[XY ]?
+17 / 27
+
+Consistency conditions
+▶P
+x,y pXY (x, y) = 1.
+▶FXY (∞, ∞) = 1.
+▶FXY (−∞, −∞) = 0.
+▶FXY (−∞, ∞) = 0.
+▶FXY (∞, −∞) = 0
+▶FXY (x, ∞) = FX(x) (marginal CDF)
+▶FXY (∞, y) = FY (y) (marginal CDF)
+18 / 27
+
+Multiple continuous random variables
+▶Pick a number uniformly at random from a unit square
+centered at (.5, .5).
+▶Random variables X and Y represent the respective x and y
+coordinate of the point chosen.
+▶FX,Y (x, y) denotes the probability that the point chosen lies
+below and to left of point (x, y).
+▶In this example, FX,Y (x, y) = xy.
+▶Now visualize FX,Y (x + h, y) −FX,Y (x, y). This is the
+probability that the point chosen lies in the thin strip below y
+and between x and x + h.
+19 / 27
+
+Multiple continuous random variables
+▶Visualize FX,Y (x + h, y) −FX,Y (x, y). This is the probability
+that the point chosen lies in the thin strip below y and
+between x and x + h.
+▶
+∂FXY (x,y)
+∂x
+= limh→0
+FX,Y (x+h,y)−FX,Y (x,y)
+h
+.
+▶This is the rate of change of the joint CDF FXY (x, y) in the x
+direction.
+20 / 27
+
+Multiple continuous random variables
+▶
+∂FXY (x,y)
+∂y
+= limh→0
+FX,Y (x,y+h)−FX,Y (x,y)
+h
+denotes the rate of
+change of the joint CDF in the y direction.
+▶fX,Y (x, y) := ∂2FXY (x,y)
+∂x∂y
+represents the joint probability density
+function.
+▶fX,Y (x, y)dxdy denotes the probability that (X, Y ) are in a
+rectangle of area dxdy around (x, y).
+▶In this example, fX,Y (x, y) = 1.
+▶FXY (x, y) :=
+R x
+−∞
+R y
+−∞fXY (s, t)dsdt.
+21 / 27
+
+Summary for Continuous random variable
+▶fXY (x, y) denotes the joint pdf for X and Y .
+▶FXY (x, y) := R x
+−∞
+R y
+−∞fXY (s, t)dsdt. fX,Y (x, y) := ∂2FXY (x,y)
+∂x∂y
+.
+The marginal pdf’s fX and fY can be obtained from the
+joint PDF as follows:
+fX(x) =
+R ∞
+−∞fXY (x, y)dy and fY (y) =
+R ∞
+−∞fXY (x, y)dx
+Two random variables, X and Y are independent if the
+following is true:
+fXY (x, y) = fX(x)fY (y), FXY (x, y) = FX(x)FY (y) and
+E[XY ] = E[X]E[Y ].
+▶Rules similar for more than 2 random variables.
+22 / 27

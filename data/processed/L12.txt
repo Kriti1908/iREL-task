@@ -1,0 +1,161 @@
+Consistency of conditional PMF
+P
+x pX|A(x) = 1.
+Proof:
+▶P
+x pX|A(x) = P
+x
+P({X=x}∩A)
+P(A)
+▶{ω ∈Ω: X(ω) = x} are disjoint sets for different x.
+▶From theorem of total probability, this implies that
+{X = x} ∩A are disjoint sets for all x.
+▶P
+x pX|A(x) =
+P(S
+x{{X=x}∩A)}
+P(A)
+= P(A)
+P(A) = 1.
+11 / 41
+
+Another Example
+▶Lets X denote the outcome of a dice.
+▶Let A denote the event that the roll is odd.
+▶What is pX|A(x)?
+▶Given that event A has happened, what is the average value
+of the dice, i.e., E[X|A]?
+E[X/A] = P
+x xpX|A(x).
+Using LOTUS,
+E[g(X)/A] = P
+x g(x)pX|A(x).
+12 / 41
+
+Today’s class
+▶Conditioning X on an event A ∈F.
+▶Conditional Expectation E[X|A].
+▶Conditioning X with disjoint partitions {Ai} of Ω.
+▶Conditioning X on an event {X ∈A} ∈F ′
+▶Conditioning X on another random variable Y .
+▶Conditional expectation E[X|Y = y].
+13 / 41
+
+Conditioning with disjoint partitions
+▶Now let {Ai, i = 1, 2, . . . , n} be a disjoint partition of Ω.
+▶Prove the following using law of total probability
+pX(x) = Pn
+i=1 P(Ai)pX|Ai(x)
+Proof:
+▶Pn
+i=1 P(Ai) P({X=x}∩Ai )
+P(Ai )
+= Pn
+i=1 P({X = x} ∩Ai) = P({X = x}).
+▶The last equality follows from the law of total probability.
+▶An important consequence is the following.
+E[X] = Pn
+i=1 P(Ai)E[X|Ai]
+14 / 41
+
+Today’s class
+▶Conditioning X on an event A ∈F.
+▶Conditional Expectation E[X|A].
+▶Conditioning X with disjoint partitions {Ai} of Ω.
+▶Conditioning X on an event {X ∈A} ∈F ′
+▶Conditioning X on another random variable Y .
+▶Conditional expectation E[X|Y = y].
+15 / 41
+
+Conditioning on event X ∈A
+▶Consider a discrete r.v. X with pmf pX(x).
+Suppose an
+event X ∈A has happened where A ∈F ′.
+▶X ∈A = {ω ∈Ω: X(ω) ∈A} and P{X ∈A} = P
+x∈A pX(x).
+▶We will use the same notation pX|A(x) := P({X=x}∩{X∈A})
+P(X∈A)
+.
+▶If x /∈A, we have pX|A(x) = 0.
+▶Otherwise (when x ∈A,), we have pX|A(x) =
+pX(x)
+P(X∈A).
+▶Running example: Suppose we are given X ∈A where
+A = {2, 3}. What is pX|A(x)?
+16 / 41
+
+Revisiting Geometric random variable
+▶Let N be a geometric random variable with parameter p.
+▶Its pmf is pN(k) = (1 −p)k−1p.
+▶Suppose we are given the event A := N > n. P(A) = (1−p)n.
+▶What is pN|A(k) ?
+▶For k > n, pN|A(k) = P{(N>n)∩N=k}
+P(N>n)
+= (1 −p)k−1−np. For
+k ≤n, we have pN|A(k) = 0.
+17 / 41
+
+Today’s class
+▶Conditioning X on an event A ∈F.
+▶Conditional Expectation E[X|A].
+▶Conditioning X with disjoint partitions {Ai} of Ω.
+▶Conditioning X on an event {X ∈A} ∈F ′
+▶Conditioning X on another random variable Y .
+▶Conditional expectation E[X|Y = y].
+▶Law of iterated expectation E[X|Y ]
+▶Bayes rule revisited
+▶Sums of random variables.
+18 / 41
+
+Conditioning X on random variable Y
+▶Consider a discrete r.v’s X and Y with joint pmfs pXY (x, y)
+and with marginal pmf pX(x) and pY (y).
+▶Suppose an event A : {Y = y} has happened and we are
+interested in the probability that X = x given Y = y.
+▶This conditional pmf is denoted by pX|Y (x|y).
+▶In fact, pX|Y (x|y) := P(X=x,Y =y)
+P(Y =y)
+= pX,Y (x,y)
+pY (y) .
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+▶This is essentially same as P(A ∩B) = P(A|B)P(B)
+▶Is pX|Y (x|y) consistent?
+▶P
+x pX|Y (x|y) = P
+x
+pX,Y (x,y)
+pY (y)
+= 1.
+19 / 41
+
+What if X and Y are independent ?
+▶When do we say that X and Y are independent ?
+When
+pX,Y (x, y) = pX(x)pY (y).
+▶We also know that
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+▶This implies that pX|Y (x|y) = pX(x).
+▶NOTE: Independence implies E[XY ] = E[X]E[Y ].
+Independent
+random
+variables
+are
+uncorrelated
+(Cov(X, Y ) = 0).
+But Uncorrelated random variables
+need not be independent!! (See Example 4.13 in Bertsekas)
+20 / 41
+
+Conditioning X on random variable Y
+pX,Y (x, y) = pX|Y (x|y)pY (y)
+▶Now summing on both sides over y, we have
+pX(x) = P
+y pX|Y (x|y)pY (y)
+▶Similarly from pX,Y (x, y) = pY |X(y|x)pX(x), summing on
+both sides over x, we have
+pY (y) = P
+x pY |X(y|x)pX(x)
+▶Notice similarity to the law of total probability.
+P(A) = P
+i P(A|Bi)P(Bi).
+21 / 41

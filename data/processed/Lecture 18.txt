@@ -1,0 +1,123 @@
+Recap: Modes of Convergence
+{Xn, n ≥0} converges to X pointwise or surely if for all
+ω ∈Ωwe have limn→∞Xn(ω) = X(ω)
+Xn
+converges
+to
+X
+almost
+surely
+if
+P (ω ∈Ω: limn→∞Xn(ω) = X(ω)) = 1.
+{Xn, n ≥0} is a sequence of i.i.d random variables with mean
+µ and Sn = Pn
+i=1 Xi. Then ˆµn := Sn
+n →µ a.s. (SLLN)
+▶Estimator ˆµn has mean µ and Variance σ2
+n .
+▶ˆµn+1 = ˆµn +
+1
+n+1 [Xn+1 −ˆµn]
+11 / 24
+
+Borel Cantelli Lemma
+Self-Study: Theorem 7.5 (probabilitycourse.com)
+Consider a sequence of random variables X1, X2, . . .. If for all
+ϵ we have
+∞
+P
+n=1
+P(|Xn −X| > ϵ) < ∞
+then Xn →X a.s.
+▶This is only a sufficient condition for almost sure convergence!
+▶Thm 7.6 (HW) gives necessary and sufficient conditions.
+▶Lot of problems in probabilitycourse, practice them!
+12 / 24
+
+Another example of a.s. convergence
+▶Consider a uniform r.v. U and define Xn = n1{U≤1
+n }.
+▶Xn = n when U ≤1
+n and Xn = 0 otherwise.
+▶Given a realization of U, what can you say about the
+sequence {Xn} ?
+▶Once an Xn is zero, all higher indexed variables are also zero!
+▶This happens for all realizations U other than U = 0. In this
+case since 0 ≤1
+n for all n, X ′
+ns run off to infinity and we don’t
+see convergence to 0.
+▶But P(U = 0) = 0.
+▶Does E[Xn] →0 ?
+▶Almost sure convergence does not imply their means converge!
+13 / 24
+
+Towards convergence in probability
+▶Now define Xn = n1{Un≤1
+n } where {Un} are i.i.d uniform.
+▶Xn = n when Un ≤1
+n and Xn = 0 otherwise.
+▶What can you say about the sequence {Xn} ?
+▶Is it true that once an Xn is zero, all higher indexed variables
+are also zero!? No!
+▶Every time (on every run of the experiment or every sample
+path), we will have a sequence of zero and non-zero values,
+where the non-zero values become rarer and rarer but will
+keep happening once in a while.
+▶On no sample path would you see convergence to zero but
+occurrence of non-zero values become rare.
+▶We now characterize this notion of convergence.
+14 / 24
+
+Convergence in probability (w.h.p)
+Xn converges to X in probability if
+limn→∞P (|Xn −X| > ϵ) = 0 for all ϵ > 0.
+▶How would you compute P (|Xn −X| > ϵ) when Xn, X are
+either continuous or discrete random variables ?
+▶Ex: Xn = n with probability 1
+n and Xn = 0 otherwise.
+▶P(|Xn −X| > ϵ) = P(Xn > ϵ) = 1
+n when n > ϵ.
+▶When n < ϵ, we have P(|Xn −X| > ϵ) = 0.
+▶Once n > ϵ we have limn→∞P(Xn > ϵ) = limn→∞1
+n = 0.
+▶Xn converges to 0 in probability, but not almost surely.
+▶a.s. convergence implies convergence in probability
+15 / 24
+
+Convergence in r th mean
+Xn converges to X in r th mean if
+limn→∞E[|Xn −X|r] = 0.
+▶How will you compute E[|Xn −X|r]?
+▶When r = 2, it is convergence in mean squared sense. In
+addition if X = 0, it implies that the second moments
+converge to 0.
+▶In the convergence in probability example, do we have
+convergence in mean or mean square?
+▶Convergence in r th mean implies convergence in probability.
+16 / 24
+
+Weak convergence (in distribution)
+Xn converges to X in distribution if
+limn→∞FXn(x) = FX(x) for all continuity points of FX(·).
+▶a.s. convergence and convergence in probability imply
+convergence in distribution.
+▶Example: Xn is an exponential random variable with
+parameter λn.
+▶In this case, FXn(x) = 1 −e−nλx and FX(x) = 1 for all x.
+▶Note x = 0 is point of discontinuity as FX(0) = 1 and
+FXn(0) = 0.
+▶HW EX2: Xn are i.i.d Binomial(n, λ
+n). It converges in
+distribution to Poisson(λ).
+17 / 24
+
+Summary
+https://en.wikipedia.org/wiki/Convergence_of_random_
+variables
+18 / 24
+
+Relation between modes of convergence (no proofs)
+https://en.wikipedia.org/wiki/Proofs_of_convergence_
+of_random_variables
+19 / 24

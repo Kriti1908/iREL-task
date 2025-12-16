@@ -1,0 +1,185 @@
+Sequence of sets
+▶Given (Ω, F), If A1 ⊂A2 . . . is an increasing sequence of
+events defined on F and ∪∞
+n=1An = A ∈F, then we say thats
+the sequence of sets An are increasing to A (An ↑A).
+▶Similarly when A1 ⊃A2 . . . is a decreasing sequence of events
+and ∩∞
+n=1An = A, then we have An ↓A.
+▶Alternative notation: For an increasing sequence of sets An we
+often write lim
+n→∞An for ∪∞
+n=1An and for a decreasing sequence
+of sets An that lim
+n→∞An = ∩∞
+n=1An.
+36 / 70
+
+Continuity of set-function P
+Lemma
+For sequence of events of the type An ↑A or An ↓A, we have
+lim
+n→∞P(An) = P(A).
+Proof
+▶Consider increasing sequence first. Similar arguments follow
+for decreasing seq.
+▶Define Fn = An −An−1
+▶∪∞
+n=1An = ∪∞
+n=1Fn.
+▶P(A) = P(∪∞
+n=1An) = P(∪∞
+n=1Fn)
+▶But P(∪∞
+n=1Fn) = limn→∞
+Pn
+i=1 P(Fi) = limn→∞P(An).
+Equivalently if An →∅, then P(An) →0.
+37 / 70
+
+Conditional probability
+▶Given/If dice rolls odd, what is the probability that the
+outcome is 1?
+▶Given/If ¯ω ∈[0, 0.5] what is the probability that ¯ω ∈[0, 0.25]?
+The conditional probability of event B given event A is defined
+as P(B/A) := P(A∩B)
+P(A)
+when P(A) > 0.
+38 / 70
+
+Conditional probability
+▶Show that P(A/B)P(B) = P(B/A)P(A).
+▶Bayes rule: P(B/A) = P(A/B)P(B)
+P(A)
+.
+▶What is P(A/(B ∩C))?.This is also denoted as P(A/BC)
+▶Prove the chain rule
+P(A ∩B ∩C) = P(A)P(B/A)P(C/(AB)).
+HW: Prove the chain rule for conditional probability given by
+P(A1 ∩A2 . . . An) = P(A1)P(A2/A1)P(A3/A1A2) . . . P(An/An−1 . . . A1).
+39 / 70
+
+Conditional probability – Examples
+▶Suppose you draw 4 cards from a deck at random without
+replacement. What is the probability that (in order) these
+cards are 9 of club, 8 of diamond, king of spade and king of
+club?
+▶What if you do the above with replacement?
+▶Consider a finite sample space Ωwhere each outcome is
+equally likely. Then what is P(B/A)?
+▶P(B/A) = |A∩B|
+|A| .
+40 / 70
+
+Law of total probability
+▶A = (A ∩B) ∪(A ∩Bc). What is P(A)?
+▶P(A) = P(A ∩B) + P(A ∩Bc).
+▶This is same as P(A) = P(A/B)P(B) + P(A/Bc)P(Bc).
+▶This formula is useful when P(A) is not given or is difficult to
+find but P(B) or P(A/B) is readily available.
+Let B1, B2, . . . Bn be the partition of the sample space Ω.
+Then for any event A we have
+P(A) =
+n
+X
+i=1
+P(A ∩Bi) =
+n
+X
+i=1
+P(A/Bi)P(Bi).
+41 / 70
+
+Example 1
+▶I have 3 bags that contain M marbles. Bag i has Ri red and
+Bi blue marbles respectively (for i = 1, 2, 3).
+▶I choose a bag at random and then draw a marble. What is
+the probability that the chosen marble is red ?
+▶Solution: P(Red) = P
+i P(Red/Bi)P(Bi)
+42 / 70
+
+Example 2
+1. If an item is defective, a robot can spot it with 98% accuracy.
+2. If an item is not defective, a robot will declare it so with 99%
+accuracy.
+3. A total of 0.1% items are defective.
+4. If the robot says that the item you drew at random is
+defective, what is the probability that the robot is correct?
+▶P(defective/robot says defective) =
+P(robot says defective/defective)P(defective)
+P(robot says defective)
+▶What is P(robot says defective)?
+43 / 70
+
+Bayes rule revisited
+Let B1, B2, . . . Bn be the partition of the sample space Ω.
+Then for any event A with P(A) > 0 we have
+P(Bj/A) =
+P(A/Bj)P(Bj)
+Pn
+i=1 P(A/Bi)P(Bi).
+In the marble example, given that the marble drawn is red, what is
+the probability that bag 1 was chosen ?
+44 / 70
+
+Independence
+▶Consider the experiment of tossing a coin and a dice
+simultaneously.
+▶Identify its underlying probability space.
+▶What is P({H, 6})?
+▶What is P({T, odd }) = P({∪i=1,3,5{T, i}})?
+▶In both cases above we have P(A ∩B) = P(A)P(B).
+▶This implies that P(A/B) = P(A).
+▶Two events A, B are independent iff P(A/B) = P(A)
+and P(B/A) = P(B).
+▶Two events A, B are independent iff
+P(A ∩B) = P(A)P(B).
+45 / 70
+
+Independence
+▶Two events A, B are independent if and only if
+P(A ∩B) = P(A)P(B).
+▶If A and B are independent, then are Ac and Bc independent?
+▶What about A and Bc? Are they independent?
+▶If A1, A2, . . . , An are independent, then prove that
+P(∪n
+i=1Ai) = 1 −
+n
+Y
+i=1
+[1 −P(Ai)]
+46 / 70
+
+Mutual and Pairwise Independence
+▶A collection of events {Ai, i ∈I} are said to be mutually
+independent if the P(∩j∈JAj) = Q
+j∈J P(Aj) for any subset J
+of I.
+▶A collection of events {Ai, i ∈I} are said to be pairwise
+independent if any pair of events from the collection are
+independent.
+▶Mutual independence implies pairwise independence but not
+the other way around.
+▶HW: Find an example where pairwise independence does not
+imply mutual independence.
+47 / 70
+
+Independence - Example
+▶Pick a number randomly from the set {1, . . . , 10}.
+▶Event A says that the number is less than 7.
+▶Event B says that the number is less than 8.
+▶Event C says that the number is even.
+▶Are the events mutually independent?
+▶Which pair of event is independent?
+48 / 70
+
+Correlation between events
+▶Two events A, B are independent iff P(A ∩B) = P(A)P(B).
+▶Two events A and B are positively correlated iff
+P(A/B) > P(A).
+▶Two events A and B are negatively correlated iff
+P(A/B) < P(A).
+▶A and B have the same correlation as Ac and Bc.
+▶A and B have the opposite correlation as A and Bc.
+49 / 70

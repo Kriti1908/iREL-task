@@ -1,0 +1,82 @@
+RECAP
+▶We looked at n-length random vectors X which are essentially
+multivariate random variables.
+▶Its CDF/pdf is simply joint CDF/pdf of components
+▶E[X] = [E[X1], . . . E[Xn]].
+CX is the covariance matrix.
+▶
+Let Y = G(X) where G : Rn →Rn, continuous invert-
+ible with continuous partial derivatives. Let H denote
+its inverse. Then fY(y) = fX(H(y))|J| where J is the
+determinant of the Jacobian matrix.
+▶If Y = AX + b, then CY = ACXAT and
+fY(y) =
+1
+|det(A)|fX(A−1(y −b))
+15 / 41
+
+Standard Normal Vector
+▶An n length random vector Z is called as a standard normal
+vector if its components Zi are independent and standard
+normal.
+▶What is E[Z] and CZ ?
+▶Show that the pdf is given by
+fZ(z) =
+1
+(2π)n/2 e{−1
+2 zT z}
+16 / 41
+
+Standard Normal Vector
+▶Now suppose X = AZ + µ. What is E[X] and CX?
+▶E[X] = µ and CX = AAT.
+▶Note that A can have dimension n × l in which case Z is an l
+length standard normal.
+▶What is fX(x)?
+17 / 41
+
+Multivariate Gaussian Vector
+▶What is fX(x)?
+fX(x)
+=
+1
+|det(A)|fZ(A−1(x −µ))
+=
+1
+(2π)n/2p
+det(CX)e{−1
+2 (x−µ)T C−1
+X (x−µ)}
+▶Henceforth we will use the notation Σ to represent CX.
+Definition 1: X is multivariate Gaussian with mean vector µ
+and covariance matrix Σ (denoted by X ∼N(µ, Σ)) if for
+some A and µ, it can be written as X = AZ + µ where Z is
+a standard normal vector and Σ = AAT.
+18 / 41
+
+Equivalent definitions of a Gaussian vector
+The following are equivalent definitions (without proof)
+X ∼N(µ, Σ) if for some A and µ, it can be written as
+X = AZ + µ
+X ∼N(µ, Σ) if it has the pdf
+fX(x) =
+1
+(2π)n/2p
+det(Σ)e{−1
+2 (x−µ)T Σ−1(x−µ)}
+X ∼N(µ, Σ) iff for all vectors a ∈Rn, it turns out that aTX
+is univariate Gaussian N(aTµ, aTΣa).
+For equivalent definitions see https://en.wikipedia.org/
+wiki/Multivariate_normal_distribution
+19 / 41
+
+Affine transformations preserve Gaussianity
+▶Suppose X ∼N(µ, Σ), then what can we say about
+Y = AX + b?
+Is it a Gaussian vector ?
+▶Easy to see that E[Y] = AE[X] + b and CY = AΣAT.
+▶Like in the univariate case, we can use MGF (for multivariate
+MGF see Bertsekas) to show the following
+Suppose X ∼N(µ, Σ). Now consider Y = AX + b. Then
+we have Y ∼N(AE[X] + b, AΣAT).
+20 / 41

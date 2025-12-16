@@ -1,0 +1,142 @@
+MA 6.101
+Probability and Statistics
+Tejas Bodas
+Assistant Professor, IIIT Hyderabad
+1 / 24
+
+Convergence of Random Variables
+1 / 24
+
+Pointwise Convergence
+▶When do we say that {xn} converges to x ∈R ?
+We say that {xn} converges to x ∈R (denoted by xn →
+x) if for every ϵ > 0, we can find an N(ϵ) ∈N such that
+for |xn −x| < ϵ for n > N(ϵ).
+▶What about convergence of functions?
+▶When do we say that a sequence of functions Fn(·) converge
+to F(·) on the domain R?
+We say that the sequence of function Fn(·) converge
+to F(·) pointwise if the sequence {Fn(x)} converges to
+F(x) (Fn(x) →F(x)) for all x ∈R.
+2 / 24
+
+Uniform Convergence
+We say that the sequence of function Fn(·) converge to
+F(·) pointwise if the sequence {Fn(x)} converges to F(x)
+(Fn(x) →F(x)) for all x ∈R.
+▶For every x, the sequence {Fn(x)} coverges to F(x).
+▶For every ϵ, there exists N(ϵ, x) which can depend on x.
+▶Only those Fn(x) are ϵ close to F(x) for which n > N(ϵ, x).
+If N(ϵ, x) = N(ϵ) (i.e., independent of x) for every x ∈R,
+then such convergence of Fn(·) to F(·) is called as uniform
+convergence.
+3 / 24
+
+Convergence of Sequence of random variables
+▶We will now be interested in the convergence properties of an
+infinite sequence of random variables {Xn} to some limiting
+random variable X.
+▶What does the convergence Xn →X even mean ?
+▶When you perform the random experiment once, you get a
+sequence of realizations {xn} and x.
+▶If you are ’lucky’, maybe xn →x.
+▶But if you were to perform the experiment again, you may not
+be so ’lucky’ and get a different sequence {x ′
+n} which may not
+converge to x′.
+▶We will come up with notions of convergence that depend on
+how often you see the sequence of realizations converging.
+4 / 24
+
+Convergence of Sequence of random variables
+▶Convergence of Xn →X
+▶Here X could even be a deterministic number.
+▶X ′
+ns could be dependent on each other.
+▶Each random variable Xn could have a different law
+(pmf/pdf).
+5 / 24
+
+Modes of Convergence (Xn →X)
+Pointwise or Sure convergence
+{Xn, n ≥0} converges to X pointwise or surely if for all
+ω ∈Ωwe have limn→∞Xn(ω) = X(ω)
+▶Consider Ω= {H, T}.
+▶Further, Xn =
+( 1
+n
+if ω = H
+1 + 1
+n
+if ω = T. and X =
+(
+0
+if ω = H
+1
+if ω = T.
+6 / 24
+
+Almost sure convergence
+Xn converges to X almost surely if
+P (ω ∈Ω: limn→∞Xn(ω) = X(ω)) = 1.
+▶The set of outcomes where the convergence does not happen
+has measure 0.
+P{ω ∈Ω: limn→∞Xn(ω) ̸= X(ω)} = 0.
+▶Consider Ω= [0, 1] where you pick a number uniformly in
+[0, 1].
+Let Xn(ω) = ωn for all ω ∈Ωand X(ω) = 0 for all ω.
+▶Xn(ω) →X(ω) for ω ∈[0, 1).
+▶Xn(ω) ↛X(ω) for ω = 1 and P{ω = 1}.
+▶This is almost sure convergence as P{[0, 1)} = 1.
+7 / 24
+
+Almost sure (a.s.) convergence
+Xn converges to X almost surely if
+P (ω ∈Ω: limn→∞Xn(ω) = X(ω)) = 1.
+▶Example 2: Strong law of large numbers (SLLN).
+Let {Xn, n ≥0} denote a sequence of i.i.d random vari-
+ables with mean µ and denote Sn = Pn
+i=1 Xi.
+Then
+Sn
+n →µ a.s.
+▶Toss a biased coin (probability of head is µ) repeatedly. What
+is ω and Ω?
+▶Let Xi denote the outcome of the ith toss and Sn denotes the
+number of heads in n tosses.
+▶The empirical mean is given by Sn
+n .
+S
+8 / 24
+
+Detour: Incremental formula for sample mean
+▶Now that we know Sn
+n →µ we can use ˆµn := Sn
+n as an
+’estimator’ for the mean especially in cases when the
+underlying distribution is not known.
+▶Note that the estimator ˆµn is a random variable. What is its
+cdf? what is its mean & Variance?
+▶ˆµn = Sn
+n is an ’unbiased estimator’ since E[ ˆµn] = µ.
+▶Var( ˆµn) = σ2
+n
+▶We will soon see CLT that will tell the CDF of ˆµn without any
+information on the law of Xi.
+9 / 24
+
+Detour: Incremental formula for sample mean
+▶Now given ˆµn, suppose you see an additional sample Xn+1.
+▶How will you compute ˆµn+1?
+▶Naive way : ˆµn+1 =
+Pn+1
+i=1 Xi
+n+1
+.
+▶There is an incremental formula that uses ˆµn.
+ˆµn+1 = ˆµn +
+1
+n+1 [Xn+1 −ˆµn]
+▶Such averaging formulas are used extensively in Reinforcement
+learning.
+10 / 24

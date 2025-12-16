@@ -1,0 +1,231 @@
+MA 6.101
+Probability and Statistics
+Tejas Bodas
+Assistant Professor, IIIT Hyderabad
+1 / 18
+
+Inference problem
+▶X is an unobservable random variable with a known
+distribution.
+▶We only observe measurements Y that takes values according
+to fY |X(y|x).
+▶Objective is to draw inference about X having seen a
+realization of Y
+i.e., Obtain fX|Y (x|y) using only fX(x) and
+fY |X(y|x), both of which are known.
+2 / 18
+
+Bayes Rule revisited
+P(B/A) = P(A/B)P(B)
+P(A)
+For continuous random variables X and Y
+fX|Y (x|y) = fY |X(y|x)fX(x)
+fY (y)
+=
+fY |X(y|x)fX(x)
+R ∞
+−∞fY |X(y|t)fX(t)dt
+For discrete random variables X and Y
+pX|Y (x|y) = pY |X(y|x)pX(x)
+pY (y)
+=
+pY |X(y|x)pX(x)
+P
+i pY |X(y|i)pX(i)
+3 / 18
+
+Example 3.19(Bertsekas)
+Lifetime of a Phillips bulb is assumed to be an exponential random
+variable Y with parameter Λ. Λ itself is a uniform random variable
+over [1, 1.5]. You test a bulb and see that it has a lifetime of y
+units. What can you say about randomness of Λ having observed
+Y = y.?
+▶What is fΛ(λ)?
+▶What is fY |Λ(y|λ)?
+▶What is fY (y)?
+▶fΛ|Y (λ|y) =
+2λe−λy
+R 1.5
+1
+2te−tydt
+for λ ∈[1, 1.5].
+4 / 18
+
+Bayes Rule revisited
+For discrete N and continuous random variable Y
+P(N = n|Y = y) = fY |N(y|n)pN(n)
+fY (y)
+=
+fY |N(y|n)pN(n)
+P
+i fY |N(y|i)pN(i)
+Equivalently
+fY |N(y|n) = P(N = n|Y = y)fY (y)
+pN(n)
+=
+P(N = n|Y = y)fY (y)
+R ∞
+−∞P(N = n|Y = t)fY (t)dt
+5 / 18
+
+Example 3.20 (Bertsekas)
+▶Suppose X = 1 w.p. p and X = −1 w.p. 1 −p. While
+transmitting this signal, it is corrupted by a Gaussian noise
+N ∼N(0, 1). We observe Y = X + N. Suppose you observe
+Y = y, then show that
+P(X = 1|Y = y) =
+pey
+pey + (1 −p)e−y
+▶Intuitively, this probability goes to zero as y decreases to −∞
+and increases to 1 as y increases to ∞.
+▶P(X = 1|Y = y) =
+fY |X(y|1)pX(1)
+fY (y)
+▶Here fY (y) = fY |X(y|1)pX(1) + fY |X(y| −1)pX(1).
+▶Substitute values to obtain answer.
+6 / 18
+
+Law of Iterated Expectation revisited
+▶Recall E[X] = E[E[X|Y ]].
+What are the two expectations
+w.r.t ?
+▶Let g(Y ) = E[X|Y ]. Then
+g(y1) = E[X|Y = y1] =
+Z
+x
+xfX|Y (x|y1)dx
+. So the inner expectation is w.r.t X.
+▶E[X] = E[g(Y )] =
+R
+y g(y)fY (y)dy.
+So the outer
+expectation is w.r.t Y .
+E[X] = EY [EX[X|Y ]]
+7 / 18
+
+Law of Iterated Expectation revisited
+E[X] = EY [EX[X|Y ]]
+▶What is E[Xg(Y )|Y ]?
+▶Note that E[Xg(Y )|Y = y1] = g(y1)E[X|Y = y1].
+▶Therefore E[Xg(Y )|Y ] = g(Y )E[X|Y ].
+In general, we have
+the following pull through property
+E[h(X)g(Y )|Y ] = g(Y )E[h(X)|Y ].
+8 / 18
+
+Law of Iterated Expectation revisited
+E[X] = EY [EX[X|Y ]]
+▶If X and Y are independent, what is E[X|Y ]?
+▶Since X and Y are independent, E[X|Y = y] = E[X] for all y.
+▶This means g(Y ) = E[X|Y ] always takes the value of E[X].
+In fact, when X and Y are independent, we have
+E[g(X)|Y ] = E[g(X)].
+9 / 18
+
+Variance of sum of random variables
+▶Let X1, X2, . . . Xn be possibly dependent and non-identical
+random variables.
+▶Lets say you know the joint pdf/pmf for every pair of random
+variables from this collection.
+▶AIM: Calculate Var(Z) where Z =
+nP
+i=1
+aiXi for some scalars ai.
+10 / 18
+
+Variance of sum of random variables
+▶Recall Var(X) = E[X −E[X]]2 = E[X 2] −E[X]2.
+▶Also recall Cov(X, Y ) = E[XY ] −E[X]E[Y ].
+▶Following properties of covariance follow (HW)
+1. Cov(X, X) = Var(X)
+2. If X, Y are independent, Cov(X, Y ) = 0.
+3. Cov(X, Y ) = Cov(Y , X)
+4. Cov(aX, Y ) = aCov(X, Y )
+5. Cov(X + a, Y ) = Cov(X, Y )
+6. Cov(X + Z, Y ) = Cov(X, Y ) + Cov(Z, Y )
+7. Cov
+ 
+m
+P
+i=1
+aiXi,
+nP
+j=1
+bjYj
+!
+=
+m
+P
+i=1
+nP
+j=1
+aibjCov(Xi, Yj)
+11 / 18
+
+Variance of sum of random variables
+▶AIM: Calculate Var(Z) where Z =
+nP
+i=1
+aiXi for some scalars ai.
+▶Var(Z) = Cov(Z, Z) and therefore
+Cov
+ 
+nP
+i=1
+aiXi,
+nP
+j=1
+ajXj
+!
+=
+m
+P
+i=1
+nP
+j=1
+aiajCov(Xi, Xj)
+=
+nP
+i=1
+a2
+i Var(Xi)
++
+P
+(i,j):i̸=j
+aiajCov(Xi, Xj)
+Var(
+nP
+i=1
+aiXi) =
+nP
+i=1
+a2
+i Var(Xi) +
+P
+(i,j):i̸=j
+aiajCov(Xi, Xj)
+12 / 18
+
+Variance of sum of random variables
+Var(
+nP
+i=1
+aiXi) =
+nP
+i=1
+a2
+i Var(Xi) +
+P
+(i,j):i̸=j
+aiajCov(Xi, Xj)
+▶Show that Var(X + Y ) = Var(X) + Var(Y ) + 2Cov(X, Y )
+▶Now if X ′
+i s are independent, what is Var(Z) ?
+▶Let {Xi, i = 1, 2, . . . n} be i.i.d and consider Sn =
+Pn
+i=1 Xi
+n
+.
+▶Show that Var(Sn) = Var(X)
+n
+13 / 18

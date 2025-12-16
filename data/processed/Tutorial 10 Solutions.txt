@@ -1,0 +1,630 @@
+Probability and Statistics: MA6.101
+Tutorial 10
+Topics Covered: Markov Chains
+Q1: Suppose a machine can be either operational or in maintenance, and the machine’s status on
+successive days follows a Markov chain with stationary transition probabilities.
+Suppose the
+transition matrix is as follows:
+Operational
+Maintenance
+Operational
+0.7
+0.3
+Maintenance
+0.6
+0.4
+(a) If the machine is in maintenance on a given day, what is the probability that it will also be
+in maintenance the next day?
+(b) If the machine is operational on a given day, what is the probability that it will remain
+operational for the next two days?
+(c) If the machine is in maintenance on a given day, what is the probability that it will be
+operational on at least one of the next three days?
+A:
+(a) Probability of Maintenance the Next Day Given Maintenance Today
+Let sn denote the machine’s status on a given day. From the transition matrix, the
+probability P(sn+1 = Maintenance | sn = Maintenance) is given by the bottom-
+right element of the transition matrix:
+P(sn+1 = Maintenance | sn = Maintenance) = 0.4
+(b) Probability of Operational Status for the Next Two Days Given Operational Today
+We need to find P(sn+2 = Operational ∩sn+1 = Operational | sn = Operational).
+This can be written as:
+P(sn+2 = Operational ∩sn+1 = Operational ∩sn = Operational) =
+P(sn = Operational) · P(sn+1 = Operational | sn = Operational)
+· P(sn+2 = Operational | sn+1 = Operational)
+Since P(sn = Operational) = 1 (we start with an operational day), this simplifies
+to:
+P(sn+2 = Operational | sn+1 = Operational) · P(sn+1 = Operational | sn = Operational)
+= (0.7)(0.7)
+= 0.49
+(c) Probability of Operational Status on At Least One of the Next Three Days Given
+Maintenance Today
+We are asked to find the probability that the machine is operational on at least
+one of the next three days, given that today it is in maintenance. This probability
+is given by:
+1−P(sn+3 = Maintenance∩sn+2 = Maintenance∩sn+1 = Maintenance | sn = Maint)
+1
+
+Using the transition matrix, we have:
+P(sn+3 = Maintenance, sn+2 = Maintenance, sn+1 = Maintenance | sn = Maintenance)
+= (0.4)(0.4)(0.4)
+= 0.064
+Thus, the required probability that the machine will be operational on at least one
+of the next three days is:
+1 −0.064 = 0.936
+Q2: A person walks along a straight line and, at each time period, takes a step to the right with
+probability b and a step to the left with probability 1 −b.
+The person starts in one of the
+positions 1, 2, . . . , m, but if they reach position 0 (or position m + 1), their step is instantly
+reflected back to position 1 (or position m, respectively). Equivalently, we may assume that when
+the person is in positions 1 or m, they will stay in that position with probability 1 −b and b,
+respectively.
+(a) Find the transition probability matrix P.
+(b) Find the stationary distribution using the formula π = πP.
+A:
+(a) Transition Probability Matrix
+Let the states of the system be {1, 2, . . . , m}.
+Then, the transition probability
+matrix P is an m × m matrix where:
+- For the boundary positions: - P1,1 = 1 −b: The probability of staying in position
+1 is 1 −b. - P1,2 = b: The probability of moving from position 1 to position 2 is b.
+- Pm,m−1 = 1 −b: The probability of moving from position m to position m −1 is
+1 −b. - Pm,m = b: The probability of staying in position m is b.
+- For the inner positions 2 ≤i ≤m −1: - Pi,i−1 = 1 −b: The probability of moving
+from position i to i −1 is 1 −b. - Pi,i+1 = b: The probability of moving from
+position i to i + 1 is b.
+Thus, the transition probability matrix P can be written as:
+P =
+
+
+1 −b
+b
+0
+. . .
+0
+0
+1 −b
+0
+b
+. . .
+0
+0
+0
+1 −b
+0
+. . .
+0
+0
+...
+...
+...
+...
+...
+...
+0
+0
+. . .
+1 −b
+0
+b
+0
+0
+. . .
+0
+1 −b
+b
+
+
+Q3: A gambler begins with an initial fortune of i dollars. Each time he plays, he has the possibility
+of winning 1 dollar with a probability p or losing 1 dollar with a probability 1 −p. The gambler
+will only stop playing if he either accumulates N dollars or loses all of his money. What is the
+probability that he will end up with N dollars ?
+A:
+Let Xn be the amount of money after playing n times. Then Xn = i + ∆1 + · · · + ∆n,
+where {∆n} is a random walk with step 1 and probability of going up p.
+Now let
+τi = min
+n≥0{Xn ∈{0, N}|X0 = i}
+2
+
+Figure 1: Question 3 Part (ii)
+3
+
+be the time at which the gambler stops playing. We want to calculate
+Pi(N) = P(Xτi = N)
+that is, the probability that the gambler accumulates N dollars starting with i dollars
+Now if after the first play, if ∆1 = 1, then the gambler will finally win with a probability
+Pi+1(N) by the markov property of the chain. Similar reasoning holds for ∆1 = −1.
+Thus we obtain the equation
+Pi(N) = pPi+1(N) + (1 −p)Pi−1(N)
+We also have the boundary probabilites P0(N) = 0, PN(N) = 1
+Rearranging the terms of the equation, we have
+Pi+1(N) −Pi(N) = q
+p(Pi(N) −Pi−1(N))
+where q = 1 −p. Recursively backtracking using this equation, we get
+Pi+1(N) −Pi(N) =
+q
+p
+i
+(P1(N) −P0(N))
+=
+q
+p
+i
+P1(N)
+Using this equation, we can successively evaluate Pi(N) as an expression of P1(N)
+P2 =
+
+1 + q
+p
+
+P1
+P3 =
+ 
+1 + q
+p +
+q
+p
+2!
+P1
+...
+Pi =
+ 
+1 + q
+p +
+q
+p
+2
++ · · · +
+q
+p
+i−1!
+P1
+Setting PN(N) = 1 we get
+PN(N) = 1 =
+ 
+1 + q
+p + . . .
+q
+p
+N−1!
+P1(N)
+PN(N) =
+(1−(q/p)N
+1−(q/p) P1(N)
+q ̸= p
+NP1(N)
+q = p
+Solving for P1(N) and substituting, we get
+Pi(N) =
+( 1−(q/p)i
+1−(q/p)N
+q ̸= p
+i
+N
+q = p
+Q4: Simulate a markov chain with transition probability matrix
+P =
+
+
+0.2
+0.7
+0.1
+0.9
+0
+0.1
+0.2
+0.8
+0
+
+
+and find its limiting distribution.
+4
+
+A:
+import numpy as np
+import matplotlib . pyplot as
+plt
+P = np . array ( [ [ 0 . 2 ,
+0.7 ,
+0 . 1 ] ,
+[ 0 . 9 ,
+0.0 ,
+0 . 1 ] ,
+[ 0 . 2 ,
+0.8 ,
+0 . 0 ] ] )
+def simulate (P,
+num iterations =1000,
+t o l=1e −8):
+state = np . random . rand (P. shape [ 0 ] )
+state = state / state .sum()
+s t a t e h i s t o r y = [ state ]
+for
+i
+in range( num iterations ) :
+new state = np . dot ( state , P)
+s t a t e h i s t o r y . append ( new state )
+i f np . a l l c l o s e ( new state ,
+state ,
+atol=t o l ) :
+print ( f ”Converged  a f t e r  { i +1}  i t e r a t i o n s ” )
+break
+state = new state
+return np . array ( s t a t e h i s t o r y )
+num trials = 5
+num iterations = 1000
+plt . f i g u r e ( f i g s i z e =(12 , 8))
+for
+t r i a l
+in range( num trials ) :
+print ( f ”\ nTrial  { t r i a l  + 1}” )
+s t a t e h i s t o r y = simulate (P,
+num iterations=num iterations )
+s t a t i o n a r y d i s t r i b u t i o n = s t a t e h i s t o r y [ −1]
+print ( f ” Stationary  Distribution  for  Trial  { t r i a l  + 1}:  { s t a t i o n a r y d
+for
+state index
+in range(P. shape [ 0 ] ) :
+plt . plot ( s t a t e h i s t o r y [ : ,
+state index ] ,
+l a b e l=f ” State  { state ind
+f i n a l v a l u e = s t a t e h i s t o r y [ −1 ,
+state index ]
+plt . text ( len ( s t a t e h i s t o r y ) ,
+f i n a l v a l u e −0.008 ,
+f ”{ f i n a l v a l u e : .
+verticalalignment=’ center ’ ,
+horizontalalignment=’ right ’
+color=f ”C{ state index }” ,
+f o n t s i z e =10)
+plt . xlabel ( ” I t e r a t i o n s ” )
+plt . ylabel ( ” Probability ” )
+plt . t i t l e ( ”Convergence  to  Stationary  Distribution  of  Markov  Chain” )
+plt . legend ( loc=” best ” )
+plt . show ()
+From the results, we can see that the probability distribution of the states converges to
+a fixed value irrespective of the starting distribution. This is the limiting distribution
+5
+
+Figure 2: Simulation Results
+of the markov chain.
+The stationary/ limiting distribution obtained is
+α =
+
+0.492
+0.417
+0.091
+
+We can verify this by finding the stationary distribution of the markov chain
+π(P −I) = 0
+π
+
+
+−0.8
+0.7
+0.1
+0.9
+−1
+0.1
+0.2
+0.8
+−1
+
+= 0
+We get the following sytem of equations
+−8π1 + 9π2 −2π3 = 0
+9π1 −10π2 + π3 = 0
+2π1 + 8π2 −10π3 = 0
+π1 + π2 + π3 = 0
+Solving these, we get
+π =
+ 92
+187
+78
+187
+1
+11
+
+=
+
+0.491
+0.417
+0.091
+
+Which is the same as the distribution obtained from the simulation
+Q5: Purpose-flea zooms around the vertices of the transition diagram shown below. Let Xt represent
+Purpose-flea’s state at time t (where t = 0, 1, . . .).
+(a) Find the transition matrix P.
+(b) Find P(X2 = 3 | X0 = 1).
+6
+
+Figure 3: Transition Diagram of Purpose-flea’s Movement
+(c) Suppose that Purpose-flea is equally likely to start on any vertex at time 0.
+Find the
+probability distribution of X1.
+(d) Suppose that Purpose-flea begins at vertex 1 at time 0. Find the probability distribution of
+X2.
+A:
+(a) The transition matrix P is constructed based on the probabilities from the diagram:
+P =
+
+
+0.6
+0.2
+0.2
+0.4
+0
+0.6
+0
+0.8
+0.2
+
+
+(b) To find P(X2 = 3 | X0 = 1), we calculate P 2 and find the entry in the first row
+and third column.
+P 2 = P · P =
+
+
+0.6
+0.2
+0.2
+0.4
+0
+0.6
+0
+0.8
+0.2
+
+
+
+
+0.6
+0.2
+0.2
+0.4
+0
+0.6
+0
+0.8
+0.2
+
+
+Calculate P 2 , and use the value in position (1, 3) for P(X2 = 3 | X0 = 1).
+(c) Let the initial probability distribution vector be π0 =
+  1
+3
+1
+3
+1
+3
+
+. The distribution
+at X1 is then:
+π1 = π0 · P =
+  1
+3
+1
+3
+1
+3
+
+
+
+0.6
+0.2
+0.2
+0.4
+0
+0.6
+0
+0.8
+0.2
+
+
+This calculation yields the probability distribution of X1.
+(d) If Purpose-flea begins at vertex 1 at time 0, the initial distribution vector is π0 =
+ 1
+0
+0
+
+. The distribution at X2 is given by:
+π2 = π0 · P 2
+where P 2 is the squared transition matrix. Use the result from part (b) to find the
+distribution at X2.
+Q6: Consider a Markovian Coin, S = {0, 1}. Where 0 denotes Head and 1 denotes Tails. Suppose
+that the transition matrix is given by
+P =
+1 −a
+a
+b
+1 −b
+
+,
+7
+
+where a and b are two real numbers in the interval [0, 1] such that 0 < a + b < 2. Suppose that
+the system is in state 0 at time n = 0 with probability α, i.e.,
+π(0) = [P(X0 = 0)
+P(X0 = 1)] = [α
+1 −α],
+where α ∈[0, 1].
+(a) How does transition matrix define the nature of the coin.
+(b) Using induction (or any other method), show that
+P n =
+1
+a + b
+b
+a
+b
+a
+
++ (1 −a −b)n
+a + b
+ a
+−a
+−b
+b
+
+.
+(c) Show that
+lim
+n→∞P n =
+1
+a + b
+b
+a
+b
+a
+
+.
+(d) Show that
+lim
+n→∞π(n) =
+
+b
+a+b
+a
+a+b
+
+.
+A:
+(a) Nature of the Markovian coin: The probability that there is a Heads to Tails
+transition is a, and the probability that there is a Tails to Heads transition is b.
+The probability that it retains its memory is 1 −α where α is the probability that
+chain changes whatever state it is in.
+(b) For n = 1, we have
+P 1 =
+1 −a
+a
+b
+1 −b
+
+=
+1
+a + b
+b
+a
+b
+a
+
++ 1 −a −b
+a + b
+ a
+−a
+−b
+b
+
+.
+Assuming that the statement of the problem is true for n, we can write P n+1 as
+P n+1 = P nP =
+1
+a + b
+b
+a
+b
+a
+
++ (1 −a −b)n
+ a
+−a
+−b
+b
+
+·
+1 −a
+a
+b
+1 −b
+
+=
+1
+a + b
+b
+a
+b
+a
+
++ (1 −a −b)n+1
+a + b
+ a
+−a
+−b
+b
+
+,
+which completes the proof.
+(c) By assumption 0 < a + b < 2, which implies −1 < 1 −a −b < 1. Thus,
+lim
+n→∞(1 −a −b)n = 0.
+Therefore,
+lim
+n→∞P n =
+1
+a + b
+b
+a
+b
+a
+
+.
+(d)
+lim
+n→∞π(n) = lim
+n→∞[π(0)P n]
+= π(0) lim
+n→∞P n
+= [α
+1 −α] ·
+1
+a + b
+b
+a
+b
+a
+
+=
+
+b
+a+b
+a
+a+b
+
+.
+8
+
+Q7: For the Markovian coin described above:
+(a) Calculate the stationary distribution. What do you observe?
+(b) Find the mean return times, r0 and r1, for this Markov chain. Do you observe anything?
+(c) Can you intuitively explain the result above?
+A:
+(a) The stationary distribution is the same as the limiting distribution.
+(b) To calculate r0:
+r0 = E[R | X1 = 0, X0 = 0] · P(X1 = 0 | X0 = 0) + E[R | X1 = 1, X0 = 0] · P(X1 = 1 | X0 = 0)
+= E[R | X1 = 0] · (1 −a) + E[R | X1 = 1] · a.
+If X1 = 0, then R = 1, so E[R | X1 = 0] = 1.
+If X1 = 1, then R ∼1 + Geometric(b), so
+E[R | X1 = 1] = 1 + E[Geometric(b)] = 1 + 1
+b.
+Therefore,
+r0 = 1 · (1 −a) +
+
+1 + 1
+b
+
+· a = a + b
+b
+.
+Similarly, we can obtain the mean return time to state 1:
+r1 = a + b
+a
+.
+We can notice that:
+r0 = 1
+πo
+r1 = 1
+π1
+(c) The larger the πi, the smaller the ri will be. For example, if πi = 1
+4, we conclude
+that the chain is in state i one-fourth of the time. In this case, ri = 4, which means
+that on average it takes the chain four time units to return to state i.
+9

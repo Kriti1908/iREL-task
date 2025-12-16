@@ -1,0 +1,122 @@
+MA 6.101
+Probability and Statistics
+Tejas Bodas
+Assistant Professor, IIIT Hyderabad
+1 / 42
+
+Towards E[g(X, Y )]
+▶What about E[aX + bY + c]?
+E[aX + bY + c]
+=
+P
+x,y(ax + by + c)pXY (x, y)
+=
+a P
+xy xpXY (x, y) + b P
+xy ypXY (x, y)
++
+c P
+xy pXY (x, y)
+=
+aE[X] + bE[Y ] + c.
+▶Along similar lines, one would expect:
+E[g(X, Y )] = P
+x
+P
+y g(x, y)pXY (x, y)
+2 / 42
+
+Finding pZ(·) where Z = g(X, Y ).
+▶Suppose Z = g(X). Then what is pZ(z) ?
+▶pZ(z) = P
+{x:g(x)=z} pX(x).
+▶Now suppose Z = g(X, Y ) then we have
+pZ(z) = P
+{x,y:g(x,y)=z} pXY (x, y)
+3 / 42
+
+E[g(X, Y )]
+▶How do we define E[g(X, Y )]?
+▶One way is to define Z = g(X, Y ) and find E[Z] = P
+z zpZ(z)
+▶Recall pZ(z) = P
+{x,y:g(x,y)=z} pXY (x, y)
+▶This gives us E[Z] = P
+z
+P
+{x,y:g(x,y)=z} zpXY (x, y).
+▶This is same as E[g(X, Y )] = P
+{x,y} g(x, y)pXY (x, y).
+E[g(X, Y )] = P
+xy g(x, y)pXY (xy)
+E[g(X, Y )] =
+R ∞
+−∞
+R ∞
+−∞g(x, y)fXY (x, y)dxdy (for continu-
+ous r.v)
+4 / 42
+
+Example of function of Random variables
+▶Suppose X and Y are continuous independent random
+variables. Let W = max(X, Y ) and Z = min(X, Y ) Find the
+CDF and pdf of Z.
+▶HW: When X and Y are exponential with parameters λ1 and
+λ2 then Z is also exponential with parameter λ1 + λ2.
+5 / 42
+
+Covariance of X and Y
+▶Cov(X, Y ) = E[(X −E[X])(Y −E[Y ])] = E[XY ]−E[X]E[Y ].
+▶When Covariance is zero, they are said to be uncorrelated.
+▶(Section 4.2 Bertsekas)
+▶https://en.wikipedia.org/wiki/Covariance
+6 / 42
+
+Covariance of X and Y
+7 / 42
+
+Conditioning with random variables
+7 / 42
+
+Today’s class
+▶Conditioning X on an event A ∈F.
+▶Conditional Expectation E[X|A].
+▶Conditioning X with disjoint partitions {Ai} of Ω.
+▶Conditioning X on an event {X ∈A} ∈F ′
+▶Conditioning X on another random variable Y .
+▶Conditional expectation E[X|Y = y].
+8 / 42
+
+A new running example
+▶Pick 2 integers from {1, 2, 3} without replacement.
+▶Ω= {(1, 2), (1, 3), (2, 1), (2, 3), (3, 1), (3, 2)}
+▶P{ω} = 1
+6 for all ω ∈Ω.
+▶Denote them by random variables X and Y .
+▶For ω = (1, 3) X(ω) = 1 and Y (ω) = 3.
+▶Write down their joint PMF pX,Y (x, y).
+▶Write down their marginal PMFs pX and pY ?
+▶What is E[X], E[Y ] and E[XY ] ?
+9 / 42
+
+Conditioning on an event A
+▶Consider a discrete r.v. X with pmf pX(x).
+Suppose an
+event A has happened where A ∈F.
+▶Consider event {ω ∈Ω: X(ω) = x}. We will use shorthand
+{X = x}.
+▶What is P(X = x|A)?
+P(X = x|A) = P({X=x}∩A)
+P(A)
+.
+pX|A(x) := P({X=x}∩A)
+P(A)
+.
+▶pX|A(x) denotes the conditional PMF of X under event A.
+▶In the running example say A is the event that the first
+number is odd and second is even.
+A = {(1, 2), (3, 2)}.
+Compute pX|A(·).
+▶How do we know that it is consistent, i.e., P
+x pX|A(x) = 1?
+10 / 42

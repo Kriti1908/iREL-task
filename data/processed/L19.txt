@@ -1,0 +1,271 @@
+Plan for the next 8 lectures (45 %)
+▶CLT + Random vectors (today)
+▶Multi-variate Gaussians (next class)
+▶Markov Chains (2 lectures)
+▶Statistics
+1 / 42
+
+Towards CLT
+▶Recall ˆµn = Sn
+n where Sn = Pn
+i=1 Xi
+▶{Xi} is i.i.d. with mean µ amnd variance σ2.
+▶E[ˆµn] = µ and var(ˆµn) = σ2
+n
+▶Now consider Yn = ˆµn−µ
+σ
+√n .
+(centering and scaling).
+What is
+the mean and variance of Yn?
+▶E[Yn] = 0 and Var(Yn) = 1. What is FYn(·)?
+▶What is limn→∞FYn(·) ?
+ANS: Φ(·) = FN(0,1)(·)
+▶In other words, Yn converges to Y = N(0, 1) in distribution.
+2 / 42
+
+CLT
+Let {Xn, n ≥0} denote a sequence of i.i.d random variables
+each with mean µ and variance 0 < σ2 < ∞.Denote ˆµn =
+Pn
+i=1 Xi
+n
+and Yn =
+ˆµn−µ
+σ
+√n . Then Yn converges to N(0, 1) in
+distribution.
+▶Xi could be ANY discrete or continuous r.v. with finite mean
+and variance.
+▶What is the consequence when E[Xi] = 0 and Var(Xi) = 1.
+▶In this case, Yn = Sn
+√n and it converges in distribution to
+N(0, 1).
+▶
+Sn
+n converges almost surely to 0 but
+Sn
+√n converges to a
+random variable N(0, 1).
+3 / 42
+
+CLT
+Let {Xn, n ≥0} denote a sequence of i.i.d random variables
+each with mean µ and variance 0 < σ2 < ∞.Denote ˆµn =
+Pn
+i=1 Xi
+n
+and Yn =
+ˆµn−µ
+σ
+√n . Then Yn converges to N(0, 1) in
+distribution.
+▶CLT given a way to find approximate disribution of ˆµn.
+▶Note that for large enough n, we can use the approximation
+that Yn ∼N(0, 1).
+▶Since Gaussianity is preserved under affine transformation,
+ˆµn ∼N(µ, σ2
+n )
+4 / 42
+
+Example from probabilitycourse.com
+5 / 42
+
+Normal Approximation based on CLT
+▶Let Sn = X1 + . . . Xn where Xi are i.i.d. with mean µ and
+variance σ2. If n is large, CDF of Sn can be approximated as
+follows.
+P(Sn < c) ≈Φ(z) where z = c−nµ
+σ√n
+https://www.youtube.com/watch?v=zeJD6dqJ5lo&t=111s
+6 / 42
+
+Random Vectors
+6 / 42
+
+Random Vectors
+▶We are now moving from a univariate random variable to
+multivariate random variables, also called as random vectors.
+▶An n-dimensional random vector is a column vector
+X = (X1, . . . Xn)T whose components Xi are scalar valued
+random variables defined on the same space (Ω, F, P).
+▶Since the components are on the same space, they may be
+correlated with each other.
+▶Example:X = (X1, X2)T where X1 = Z1 ans X2 = Z1 + Z2
+where Z1 and Z2 are independent standard normal.
+▶What is the pdf, cdf, marginals, mean, variance/covariance of
+X?
+7 / 42
+
+Random Vectors - Notation
+▶The CDF and pdf of the random vector X is denoted as
+follows :
+FX(x) = FX1,...Xn(x1, . . . xn)
+fX(x) = fX1,...Xn(x1, . . . xn)
+▶The joint CDF/pdf captures the correlation between
+components.
+▶The expected value vector E[X] = (E[X1], . . . , E[Xn])T
+▶Linearity of expectation hold here and so for any deterministic
+matrix A and vector b and Y = AX + b we have
+E[Y] = AE[X] + b.
+8 / 42
+
+Covariance matrix
+▶The covariance matrix CX captures the covariance between
+components and is defined by
+CX
+=
+E[(X −E[X])(X −E[X])T]
+=
+
+
+Var(X1)
+Cov(X1, X2)
+. . .
+Cov(X1, Xn)
+Cov(X2, X1)
+Var(X2)
+. . .
+Cov(X2, Xn)
+...
+...
+...
+...
+...
+...
+...
+...
+Cov(Xn, X1)
+Cov(Xn, X2)
+. . .
+Var(Xn)
+
+
+9 / 42
+
+Covariance matrix: Properties
+▶The covariance matrix CX is always positive semi-definite, i.e.,
+for any vector a ̸= 0 we have aTCXa ≥0. Why ?
+Let u = aT(X −E[X]), then aTCXa = E[uuT] = E[u2] ≥0
+▶If Y = AX + b, show that CY = ACXAT. (HW)
+▶Now recall how we obtained the pdf of Y from pdf of X when
+Y = g(X)
+Consider Y = g(X) where g is monotone, continuous,
+differentiable. Then fY (y) = fX(h(y))| dh
+dy (y)| where h is
+the inverse function of g.
+▶How does this generalize to Y = G(X)? How do we get fY
+from fX ?
+10 / 42
+
+Functions of random vectors
+▶Let Y = G(X) where G : Rn →Rn, continuous invertible with
+continuous partial derivatives.
+▶Then one can write Y =
+
+
+Y1
+Y2
+...
+Yn
+
+
+=
+
+
+G1(X1, . . . Xn)
+G2(X1, . . . Xn)
+...
+Gn(X1, . . . , Xn)
+
+
+▶For example if
+"
+Y1
+Y2
+#
+=
+"
+2X1
+X1 + X2
+#
+then G1(X1, X2) = 2X1 and
+G2(X1, X2) = X1 + X2.
+▶What does continuity of G mean? Continuity of components?
+11 / 42
+
+Functions of random vectors
+▶Let H denote inverse of G. We similarly have
+X =
+
+
+X1
+X2
+. . .
+Xn
+
+=
+
+
+H1(Y1, . . . Yn)
+H2(Y1, . . . Yn)
+...
+Hn(Y1, . . . , Yn)
+
+
+▶For the example we have X1 = H1(Y1, Y2) = and
+X2 = H2(Y1, Y2) = Y2 −Y1
+2 .
+12 / 42
+
+Functions of random vectors
+Let Y = G(X) where G : Rn →Rn, continuous invertible
+with continuous partial derivatives. Let H denote its inverse.
+Then
+fY(y) = fX(H(y))|J|
+where J is the determinant of the Jacobian matrix given by
+
+
+∂H1
+∂y1
+∂H1
+∂y2
+. . .
+∂H1
+∂yn
+∂H2
+∂y1
+∂H2
+∂y2
+. . .
+∂H2
+∂yn
+...
+...
+...
+...
+∂Hn
+∂y1
+∂Hn
+∂y2
+. . .
+∂Hn
+∂yn
+
+
+13 / 42
+
+Jacobian determinant
+▶From Vector Calculus: The Jacobian gives the ratio of the
+incremental areas dx1dx2..dxn and dy1, . . . dyn.
+▶https://en.wikipedia.org/wiki/Jacobian_matrix_
+and_determinant
+▶https://www.khanacademy.org/math/
+multivariable-calculus/multivariable-derivatives/
+jacobian/v/jacobian-prerequisite-knowledge
+▶HW1: For the running example, find fY(y).
+▶HW2: When Y = AX + b, how that
+fY(y) =
+1
+|det(A)|fX(A−1(y −b))
+14 / 42

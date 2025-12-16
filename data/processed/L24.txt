@@ -1,0 +1,123 @@
+MA 6.101
+Probability and Statistics
+Tejas Bodas
+Assistant Professor, IIIT Hyderabad
+1 / 25
+
+Statistics
+2 / 25
+
+Statistical Inference
+▶Statistical Inference methods deal with drawing inference
+about an unknown model/random variable/random process
+from observations/data.
+▶There is an unknown quantity θ∗that we would like to
+estimate using data D.
+eg: ML, communication systems.
+▶For the purpose of this course D will contain samples of a
+random variable and θ∗could be mean, variance, moments or
+parameters of the underlying random variable.
+▶Broadly, you can give 3 types of estimates for θ∗.
+1. Point Estimation: Here you want to give a point estimate
+which is a single numerical value that is your best guess for θ∗.
+2. Interval Estimation: here you give an interval on say R where
+θ∗is bound to lie with some certainty.
+3. Hypothesis testing: In binary hypothesis testing, you have two
+hypothesis (H0 : θ = α1 and H1 : θ = α2) and you use data D
+to decide which is true.
+3 / 25
+
+Statistical Inference
+▶There are two approaches to Statistical Inference:
+1) Bayesian 2) Frequentist (or classical)
+▶In Bayesian Inference, the unknown quantity is modelled as a
+random variable with a distribution that keeps changing as
+more and more data becomes available.
+▶Bayesian inference assumes a prior distribution pΘ(θ) on the
+unknown parameter θ∗and uses the likelihood pX|Θ(x|θ) for
+observing data x to obtain the posterior pΘ|X(θ|x)
+▶In Bayesian inference, prior and posterior distribution reflect
+our state of knowledge.
+4 / 25
+
+Frequentist or Classical Inference
+▶Classical Inference models the unknown quantity as a constant
+and come up with estimators that are deterministic functions
+of the observed data.
+▶Given data, these estimators are deterministic functions of the
+data, but in reality are also random variables.
+▶For example sample mean as an estimator for the mean.
+5 / 25
+
+Classical Inference: Point Estimation
+▶Let θ∗denote the unknown parameter of a random variable X
+(typically mean, variance, scale, shape etc) and suppose we
+observe i.i.d samples of X which are recorded in the dataset
+D = {x1, x2, . . . , xn}.
+▶In frequentist approach, we estimate θ∗, by defining a point
+estimator ˆΘ as a function of the random samples X1, . . . Xn as
+ˆΘ = h(X1, . . . Xn).
+▶While ˆΘ is a random variable, given D the estimator takes the
+value ˆΘ = h(x1, . . . xn).
+▶Example : Sample mean ˆµn =
+Pn
+i=1 Xi
+n
+.
+6 / 25
+
+Point Estimators: Properties
+▶The Bias B(ˆΘ) of an estimator ˆΘ is defined as
+B(ˆΘ) = E[ˆΘ] −θ∗
+▶Unbiased estimators are estimators with zero bias, i.e.,
+B(ˆΘ) = 0 and hence E[ ˆΘ] = θ∗
+▶Are all unbiased estimators good ?
+Let ˆΘ1 = X1 and
+ˆΘ2 =
+Pn
+i=1 Xi
+n
+. Which estimator is better?
+▶Var(ˆΘ1) = σ2 while Var(ˆΘ2) = σ2
+n .
+▶We need other measures to determine how good an estimator
+is, something that looks at the variance of these estimators.
+7 / 25
+
+Mean square error of Point Estimators
+▶The mean squared error of an estimator ˆΘ is defined as
+MSE(ˆΘ) = E[(ˆΘ −θ∗)2]
+▶Note that
+MSE(ˆΘ)
+=
+E[(ˆΘ −θ∗)2]
+=
+Var(ˆΘ −θ∗) + E[ˆΘ −θ∗]2
+=
+Var(ˆΘ) + Bias(ˆΘ)2
+▶This means that biased estimators could possibly have lower
+MSE error if they have extremely low variance!
+▶Find MSE of ˆΘ1 = X1 and ˆΘ2 = ˆµn + 1.
+▶Bias-Variance tradeoff talks a lot in machine learning!
+8 / 25
+
+Consistency of estimators
+▶What happens to estimators as the size of the data set
+(|D| = n) increases?
+Do all estimators converge to θ∗?
+▶Not necessarily!
+For examples ˆΘ1 = Xi where Xi is picked
+random from D does not converge.
+▶What about ˆµn.
+Using SLLN, we see that this does.
+▶Let ˆΘ1, ˆΘ2, . . . , ˆΘn, . . . , be a sequence of point estimators of
+θ∗(here n denotes the size of the dataset) We say that ˆΘn is
+a consistent estimator of θ, if
+lim
+n→∞P(|ˆΘn −θ∗| ≥ϵ) = 0,
+for all ϵ > 0
+▶This is convergence in probability.
+If almost sure convergence
+holds, it is called strongly consistent.
+▶Clearly, ˆΘn = ˆµn is strongly consistent and hence consistent.
+9 / 25

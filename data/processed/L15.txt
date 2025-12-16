@@ -1,0 +1,221 @@
+MA 6.101
+Probability and Statistics
+Tejas Bodas
+Assistant Professor, IIIT Hyderabad
+1 / 18
+
+Moment generating function
+▶The moment generating function (MGF) of a random variable
+X is a function MX : R →[0, ∞] defined by MX(t) = E[etX].
+▶If X is discrete, MX(t) = P
+x∈Ω′ etxpX(x).
+▶If X is continuous, MX(t) =
+R ∞
+−∞etxfX(x)dx.
+▶Define DX := {t : MX(t) < ∞}. DX is called the region of
+convergence (ROC). t = 0 is always part of ROC.
+▶Find MGF of Z where Z is a Bernoulli(p) random variable.
+2 / 18
+
+MGF examples
+▶For Exp(λ) variable, MX(t) =
+λ
+λ−t for λ < t.
+▶For Z ∼N(µ, σ2), we have MZ(t) = e(µt+ 1
+2 σ2t2)
+▶https://proofwiki.org/wiki/Moment_Generating_
+Function_of_Gaussian_Distribution
+▶HW: Find the MGF for a random variable X that has the
+following distributions: Binomial(n,p), Normal N(0, 1),
+Poisson(λ)
+3 / 18
+
+MGF
+▶If MX(t) is finite for all |t| ≤ϵ and for some ϵ > 0 then MX(t)
+is infinitely differentiable on (−ϵ, ϵ). (Property without proof)
+▶Let MX (r)(t) := dr
+dtr MX(t) (r th-derivative of MX(t))
+▶Intuitively, one can see that MX (r)(t) = E[etXX r] for all r.
+▶E[X r] = MX (r)(0)
+▶HW: Work out these things for Exp(λ)
+▶HW: Find MGF for all random variables studied till now
+4 / 18
+
+MGF of Sums of independent random variable
+▶Consider Z = X + Y . What is the pdf of Z when X and Y ?
+▶Let MX(t) and MY (t) be their MGF’s. What is MZ(t) ?
+▶MZ(t) = E[eZt] = E[e(X+Y )t].
+▶MZ(t) = E[eXt.eYt].
+▶If X and Y are independent, E[XY ] = E[X]E[Y ] and
+E[g(X)h(Y )] = E[g(X)]E[h(Y )].
+▶MZ(t) = E[eXt].E[eYt].
+MZ(t) = MX(t)MY (t).
+5 / 18
+
+MGF of Sums of independent random variable
+▶Consider Z = X + Y . What is the MGF of Z when X and Y ?
+MZ(t) = MX(t)MY (t).
+▶What about MZ(t) when Z = X1 + X2 + . . . Xn and Xi are
+iid.?
+▶MZ(t) = (MX(t))n.
+▶What about MZ(t) when Z = X1 + X2 + . . . XN where N is a
+positive discrete random variable?
+▶MZ(t) = E[etZ] = EN[E[etZ|N]] = EN((MX(t))N).
+▶MZ(t) = P
+n pN(n)MX(t)n
+▶HW: Prove that MZ(t) = MN(logMX(t))
+6 / 18
+
+Agenda for the next two lectures
+▶Intro to Stochastic Simulation
+▶We will generate samples from discrete or continuous r.v’s
+using samples from uniform distribution.
+▶Limit theorems for Convergence of random variables
+▶Sure convergence
+▶Almost sure convergence & SLLN
+▶Convergence in probability
+▶Convergence in r th mean
+▶Weak Convergence or Convergence in distribution & CLT
+7 / 18
+
+Generate samples using uniform distribution
+8 / 18
+
+Our aim: Obtain samples from a discrete random variable
+▶Suppose you have access to samples from a uniform random
+variable U over support [0, 1].
+▶import numpy as np
+import matplotlib.pyplot as plt
+uni_samples = np.random.uniform(0, 1, 5000)
+plt.hist(uni_samples, bins = 10, density = True)
+plt.show()
+▶uni samples is a vector of 5000 realizations of uniform random
+variable U.
+▶You can also see it as a realization of U1, U2, . . . U5000 i.i.d
+uniform variables.
+9 / 18
+
+How to simulate a dice using these samples?
+▶Can you use these 5000 samples and convert them into
+outcomes of a dice ?
+t=0
+dice_samples=np.zeros(5000)
+for u in uni_samples:
+if u < 1/6:
+dice_sample = 1
+if 1/6 < u < 2/6:
+dice_sample = 2
+if 2/6 < u < 3/6:
+dice_sample = 3
+if 3/6 < u < 4/6:
+dice_sample = 4
+if 4/6 < u < 5/6:
+dice_sample = 5
+if 5/6 < u < 6/6:
+dice_sample = 6
+dice_samples[t] = dice_sample
+t = t+1
+plt.hist(dice_samples, bins = 6, density = True)
+▶[0.02, 0.8, 0.6, 0.03]
+▶[1, 5, 4, 1]
+10 / 18
+
+Our aim: Obtain samples from a discrete random variable
+▶Consider a discrete random variable X with support set
+{x0, x1, . . .} and pmf pX(xj) = pj for j = 0, 1, . . . such that
+P
+j pj = 1.
+▶Cardinality of the support set of X could be finite or infinite.
+▶Our aim: Create i.i.d. samples of r.v. X using i.i.d. random
+samples of U.
+▶We shall now formally see the inverse transform method to do
+this.
+11 / 18
+
+The inverse transform method
+▶Aim: We wish to create i.i.d. samples of a discrete r.v. X with
+pX(xj) = pj using i.i.d. samples of a uniform r.v. U over [0, 1].
+▶Let u ∈[0, 1] be a realization of r.v. U. Then the
+corresponding sample of X is generated as follows
+X =
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+x0 if u < p0
+x1 if p0 ≤u < p0 + p1
+x2 if p0 + p1 ≤u < p0 + p1 + p2
+...
+xj if Pj−1
+i=0 pi ≤u < Pj
+i=0 pi
+...
+▶Why is this method correct? Why call it inverse transform
+method?
+12 / 18
+
+The inverse transform method
+▶A sample of X is generated using the sample of U as follows
+X = xj
+if
+j−1
+P
+i=0
+pi ≤U <
+jP
+i=0
+pi
+▶Now P(X = xj) = pj and hence the method is correct.
+▶Why the name “inverse transform method”?
+▶Recall that FX(xj) = Pj
+i=0 pi. This implies that
+▶
+X = xj
+if
+FX(xj−1) ≤U < FX(xj)
+▶After generating a random number U, we determine the value of X by
+finding the interval 
+FX(xj−1), FX(xj)
+in which u lies.
+▶At a high level, we are performing X = F −1
+X (U) but note that FX is
+discontinuous so its inverse has to be cleverly defined.
+13 / 18
+
+How to generate samples of a continuous
+random variable
+(Using samples of a continuous uniform variable over [0, 1])
+13 / 18
+
+Our aim: Obtain samples from a continuous random
+variable
+▶Suppose you have access to samples from a uniform random
+variable U over support [0, 1].(We will not study how to generate
+such samples.)
+▶Consider a continuous random variable X with support set X and
+let FX(x) denotes its cdf.
+▶Support set of X could be arbitrary.
+▶Our aim: Create i.i.d. samples of r.v. X using i.i.d. samples of U.
+▶We shall again see the inverse transform method to do this.
+14 / 18
