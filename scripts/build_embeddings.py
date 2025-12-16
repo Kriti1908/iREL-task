@@ -4,8 +4,8 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from tqdm import tqdm
 
-DATA_DIR = "data/processed"
-OUT_DIR = "vectorstore"
+DATA_DIR = "../data/processed"
+OUT_DIR = "../vectorstore"
 os.makedirs(OUT_DIR, exist_ok=True)
 
 model = SentenceTransformer("intfloat/e5-base-v2")
