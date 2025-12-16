@@ -1,0 +1,9 @@
+Ensure python version > 3.8
+
+source ~/.venv/bin/activate
+pip3 install -r requirements.txt
+pip3 install huggingface_hub
+huggingface-cli login
+    - Add access token
+    - no for github token
+python3 scripts/test_qwen.py

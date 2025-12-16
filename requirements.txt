@@ -1,0 +1,11 @@
+torch
+transformers >= 4.51.0
+sentence-transformers
+faiss-cpu
+pymupdf
+tqdm
+numpy
+pyyaml
+requests
+bitsandbytes
+accelerate

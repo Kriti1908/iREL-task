@@ -1,0 +1,14 @@
+model:
+  name: Qwen/Qwen3-4B-Instruct
+  load_in_4bit: true
+
+embedding:
+  model: intfloat/e5-base-v2
+  chunk_size: 500
+  overlap: 100
+
+paths:
+  raw_data: data/raw
+  processed_data: data/processed
+  vectorstore: vectorstore
+  results: results
