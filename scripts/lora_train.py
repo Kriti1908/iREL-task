@@ -23,7 +23,7 @@ lora_config = LoraConfig(
 
 model = get_peft_model(model, lora_config)
 
-dataset = load_dataset("json", data_files="data/lora/train.jsonl")
+dataset = load_dataset("json", data_files="../data/lora/train.jsonl")
 
 def tokenize(example):
     text = f"Question: {example['instruction']}\nAnswer: {example['output']}"
