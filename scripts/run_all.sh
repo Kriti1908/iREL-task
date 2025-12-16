@@ -10,7 +10,7 @@ echo "=========================================="
 # CONFIGURATION
 ############################################
 
-VENV_DIR="~/.venv"
+VENV_DIR="$HOME/.venv"
 MODEL_NAME="Qwen/Qwen3-4B"
 
 RAW_PDF_DIR="../data/raw"
@@ -31,14 +31,14 @@ GGUF_Q4="qwen3-4b-course-q4_k_m.gguf"
 
 echo "[0/9] Activating virtual environment..."
 
-if [ ! -d "$VENV_DIR" ]; then
-  echo "Creating virtual environment..."
-  python3 -m venv $VENV_DIR
-fi
+# if [ ! -d "$VENV_DIR" ]; then
+#   echo "Creating virtual environment..."
+#   python3 -m venv $VENV_DIR
+# fi
 
 source $VENV_DIR/bin/activate
 pip install --quiet --upgrade pip
-pip install --quiet -r requirements.txt
+pip install --quiet -r ../requirements.txt
 
 ############################################
 # STEP 1: Parse PDFs
