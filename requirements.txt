@@ -9,3 +9,5 @@ pyyaml
 requests
 bitsandbytes
 accelerate
+peft 
+datasets

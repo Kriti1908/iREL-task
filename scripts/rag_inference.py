@@ -1,20 +1,31 @@
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
+import faiss
+import numpy as np
+import subprocess
+from sentence_transformers import SentenceTransformer
+from tools import youtube_search, arxiv_search  # :contentReference[oaicite:5]{index=5}
 
-MODEL_NAME = "Qwen/Qwen3-4B"
+INDEX_PATH = "vectorstore/index.faiss"
+TEXTS_PATH = "vectorstore/texts.npy"
+META_PATH = "vectorstore/meta.npy"
 
-tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
-model = AutoModelForCausalLM.from_pretrained(
-    MODEL_NAME,
-    torch_dtype=torch.float32,
-    device_map="cpu"
-)
+LLAMA_BIN = "./llama.cpp/build/bin/llama-cli"
+MODEL_PATH = "models/qwen3/qwen3-4b-q4_k_m.gguf"
 
-def generate_answer(context, question, thinking=True):
-    messages = [
-        {
-            "role": "user",
-            "content": f"""
+embedder = SentenceTransformer("intfloat/e5-base-v2")
+
+index = faiss.read_index(INDEX_PATH)
+texts = np.load(TEXTS_PATH, allow_pickle=True)
+metadata = np.load(META_PATH, allow_pickle=True)
+
+def retrieve_context(question, k=4):
+    q_emb = embedder.encode([question]).astype("float32")
+    _, idx = index.search(q_emb, k)
+    return "\n\n".join(texts[i] for i in idx[0])
+
+def generate_answer(question, thinking=True):
+    context = retrieve_context(question)
+
+    prompt = f"""
 You are an IIIT course assistant.
 
 Context:
@@ -23,39 +34,25 @@ Context:
 Question:
 {question}
 
-Answer step by step and clearly.
+Answer clearly and concisely.
 """
-        }
+
+    cmd = [
+        LLAMA_BIN,
+        "-m", MODEL_PATH,
+        "-p", prompt,
+        "-n", "512",
+        "--temp", "0.6" if thinking else "0.7",
+        "--top-p", "0.95" if thinking else "0.8"
     ]
 
-    text = tokenizer.apply_chat_template(
-        messages,
-        tokenize=False,
-        add_generation_prompt=True,
-        enable_thinking=thinking
-    )
+    output = subprocess.check_output(cmd, text=True)
 
-    inputs = tokenizer([text], return_tensors="pt")
+    yt = youtube_search(question)
+    arxiv = arxiv_search(question)
 
-    output = model.generate(
-        **inputs,
-        max_new_tokens=512,
-        temperature=0.6 if thinking else 0.7,
-        top_p=0.95 if thinking else 0.8,
-        top_k=20
-    )
-
-    decoded = tokenizer.decode(output[0], skip_special_tokens=True)
-    return decoded
-
-
-# Thinking vs non-thinking mode in YOUR system (feature gold)
-
-# You can now expose this as a feature:
-# answer = generate_answer(context, question, thinking=True)
-# or
-# answer = generate_answer(context, question, thinking=False)
-
-# In PPT, say:
-# “The system dynamically switches between reasoning-intensive and efficient inference modes using Qwen3’s native thinking switch.”
-# That is literally one of Qwen3’s headline features.
+    return {
+        "answer": output,
+        "youtube": yt,
+        "papers": arxiv
+    }

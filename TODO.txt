@@ -1,1 +1,40 @@
 - Add data, create raw and processed folders, add raw data to raw folder
+
+- After running:
+    python3 scripts/merge_lora.py
+  You get:
+    qwen3-4b-course/
+    ├── config.json
+    ├── model-00001-of-00003.safetensors
+    ├── model-00002-of-00003.safetensors
+    ├── model-00003-of-00003.safetensors
+    ├── tokenizer.json
+    └── tokenizer_config.json
+
+    ⚠️ This folder now behaves like a normal HF model
+    (no LoRA dependency anymore).
+    Next step: convert THIS model to GGUF
+    Instead of converting Qwen3-4B, you now convert:
+        cd llama.cpp
+        python3 convert_hf_to_gguf.py \
+        ../qwen3-4b-course \
+        --outfile qwen3-4b-course-f16.gguf
+
+    Then quantize:
+        ./quantize \
+        qwen3-4b-course-f16.gguf \
+        qwen3-4b-course-q4_k_m.gguf \
+        q4_K_M
+
+    VERY IMPORTANT: Why we do this merge step
+    Without merging
+    - You must load base model + LoRA adapters
+    - llama.cpp cannot load LoRA adapters
+
+    After merging
+    - Single self-contained model
+    - llama.cpp compatible
+    - Faster inference
+    - Cleaner architecture
+
+    This is a huge design win for your PPT.
