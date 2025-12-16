@@ -1,46 +1,36 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 
-model_name = "Qwen/Qwen3-4B"
+MODEL_NAME = "Qwen/Qwen3-4B"
 
-tokenizer = AutoTokenizer.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
+
 model = AutoModelForCausalLM.from_pretrained(
-    model_name,
-    torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
-    device_map="cpu"   # CPU-only as per your constraint
+    MODEL_NAME,
+    load_in_4bit=True,                 # 🔑 KEY LINE
+    device_map="auto",                 # handles CPU placement
+    trust_remote_code=True
 )
 
 messages = [
-    {"role": "user", "content": "Give a short introduction to large language models."}
+    {"role": "user", "content": "Explain gradient descent simply."}
 ]
 
 text = tokenizer.apply_chat_template(
     messages,
     tokenize=False,
     add_generation_prompt=True,
-    enable_thinking=True
+    enable_thinking=False   # IMPORTANT: disable thinking for now
 )
 
-inputs = tokenizer([text], return_tensors="pt")
+inputs = tokenizer(text, return_tensors="pt")
 
-generated_ids = model.generate(
+output = model.generate(
     **inputs,
-    max_new_tokens=512,
-    temperature=0.6,
-    top_p=0.95,
+    max_new_tokens=128,     # 🔑 keep small
+    temperature=0.7,
+    top_p=0.8,
     top_k=20
 )
 
-output_ids = generated_ids[0][len(inputs.input_ids[0]):].tolist()
-
-# Parse thinking vs final answer
-try:
-    index = len(output_ids) - output_ids[::-1].index(151668)  # </think>
-except ValueError:
-    index = 0
-
-thinking = tokenizer.decode(output_ids[:index], skip_special_tokens=True)
-final = tokenizer.decode(output_ids[index:], skip_special_tokens=True)
-
-print("THINKING:\n", thinking)
-print("\nANSWER:\n", final)
+print(tokenizer.decode(output[0], skip_special_tokens=True))
