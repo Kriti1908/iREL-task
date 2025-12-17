@@ -48,6 +48,7 @@ def generate_answer(question, thinking=True):
         echo "" | {LLAMA_BIN} \
         -m {MODEL_PATH} \
         -p "{safe_prompt}" \
+        -r "FINAL ANSWER END" \
         -n 384 \
         --ctx-size 4096 \
         --temp {0.6 if thinking else 0.7} \
