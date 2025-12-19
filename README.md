@@ -43,9 +43,17 @@ The core "intelligence" of the system lies in the `generate_answer` workflow:
 2. **Dual-Context Retrieval**:
 * **Internal**: Pulls top-K relevant chunks from the FAISS index.
 * **External**: Uses the extracted concepts to query the `arxiv` API and `Youtube` library.
-
-
 3. **Structured Generation**: The prompt uses a "Chain of Thought" (CoT) approach, asking the model to think briefly before providing a structured response.
+
+
+### **5. Feature Enrichment: Beyond Standard Q&A**
+As highlighted in the system design, the assistant transcends traditional RAG by evolving into a holistic educational tool through three key enrichment layers:
+
+1. **YouTube Search**: While course materials explain the "what," the system fetches diverse visual explanations to clarify complex proofs and abstract concepts.
+
+2. **ArXiv Research Integration**: Connects classroom theory to the latest developments in the field, helping students bridge academic foundations with real-world applications.
+
+3. **Targeted Practice Retrieval**: Retrieves the top 3 similar past-exam questions from your specific training data via vector search, enabling exam-standard practice
 
 ---
 
@@ -146,6 +154,8 @@ python scripts/build_embeddings.py
 
 3. **Inference**:
 Open `irell.ipynb` in Kaggle/Colab, ensure the `vectorstore/` and `qwen3-4b-course/` paths are correct, and run the `generate_answer` function.
+
+https://www.kaggle.com/code/temppriyanshi/irelll
 
 ---
 
